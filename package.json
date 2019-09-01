@@ -1,0 +1,23 @@
+{
+  "name": "impressions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "concurrently \"node server.js\" \"cd client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nolbuzanis/Impressions.git"
+  },
+  "author": "Nolan Buzanis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nolbuzanis/Impressions/issues"
+  },
+  "homepage": "https://github.com/nolbuzanis/Impressions#readme",
+  "dependencies": {
+    "concurrently": "^4.1.2",
+    "express": "^4.17.1"
+  }
+}
