@@ -12,7 +12,17 @@ passport.use(
       callbackURL: '/auth/spotify/callback'
     },
     (accessToken, refreshToken, profile, done) => {
-      new User({ spotifyId: profile.id, name: profile.displayName }).save();
+      User.findOne({ spotifyId: profile.id }).then(existingUser => {
+        if (!existingUser) {
+          new User({ spotifyId: profile.id, name: profile.displayName })
+            .save()
+            .then(newUser => {
+              done(null, newUser);
+            }); // create a new user
+        } else {
+          done(null, existingUser);
+        }
+      });
     }
   )
 );
