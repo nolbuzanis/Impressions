@@ -5,6 +5,7 @@ const app = express();
 const keys = require('./config/keys');
 
 mongoose.connect(keys.mongoURI);
+require('./models/User');
 
 require('./routes/authRoutes')(app); // Spotify OAuth
 require('./services/passport'); //Passport config
