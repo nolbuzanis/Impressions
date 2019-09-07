@@ -12,6 +12,7 @@ passport.deserializeUser((id, done) => {
   User.findById(id).then(user => {
     done(null, user);
   });
+  // adds user to the req object. aka req.user
 });
 
 passport.use(
@@ -22,6 +23,9 @@ passport.use(
       callbackURL: '/auth/spotify/callback'
     },
     (accessToken, refreshToken, profile, done) => {
+      console.log(accessToken);
+      console.log(refreshToken);
+      console.log(profile);
       User.findOne({ spotifyId: profile.id }).then(existingUser => {
         if (!existingUser) {
           new User({ spotifyId: profile.id, name: profile.displayName })

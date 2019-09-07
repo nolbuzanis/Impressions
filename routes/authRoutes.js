@@ -14,4 +14,8 @@ module.exports = app => {
       failureRedirect: '/'
     })
   );
+
+  app.get('/api/current_user', (req, res) => {
+    res.send(req.user);
+  });
 };

@@ -7,6 +7,7 @@ const keys = require('./config/keys');
 
 mongoose.connect(keys.mongoURI);
 require('./models/User');
+require('./services/passport'); //Passport config
 
 const app = express();
 
@@ -21,7 +22,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app); // Spotify OAuth
-require('./services/passport'); //Passport config
 
 const PORT = process.env.PORT | 8000;
 app.listen(PORT, () => {
