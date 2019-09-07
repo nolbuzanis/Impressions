@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "concurrently \"node server.js\" \"cd client && npm start\"",
-    "start:server": "node server.js"
+    "server": "node server.js"
   },
   "repository": {
     "type": "git",
