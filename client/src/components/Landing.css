@@ -1,0 +1,63 @@
+.landing-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url('../img/microphone.jpg') center center no-repeat;
+  background-size: cover;
+}
+
+.mask {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.landing-container h1 {
+  margin: 0;
+  color: #c6b973;
+}
+
+.content {
+  position: relative;
+  margin: auto;
+  text-align: left;
+  top: 50%;
+  margin-left: 5%;
+  font-size: 24px;
+}
+
+.content p {
+  padding-bottom: 20px;
+}
+
+h1 {
+  font-size: 60px;
+  letter-spacing: 0.6rem;
+  font-family: sans-serif;
+  padding-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.call-to-action {
+  border: 1px solid #c6b973;
+  background: linear-gradient(to right, #c6b973 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.5s ease-out;
+  color: black;
+  width: 25%;
+  min-width: 200px;
+}
+.call-to-action:hover {
+  color: white;
+  background-position: left bottom;
+}
