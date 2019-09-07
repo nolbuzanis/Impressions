@@ -10,8 +10,8 @@ passport.use(
       callbackURL: '/auth/spotify/callback'
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log(accessToken);
-      console.log(refreshToken);
+      //console.log(accessToken);
+      //console.log(refreshToken);
       console.log(profile);
     }
   )
