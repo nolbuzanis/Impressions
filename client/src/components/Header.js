@@ -5,7 +5,7 @@ class Header extends Component {
   render() {
     return (
       <div className='nav'>
-        <a className='auth-button' href='/auth/spotify'>
+        {/* <a className='auth-button' href='/auth/spotify'>
           <div className='auth-text'>Sign in with</div>
 
           <div className='auth-icon'>
@@ -38,7 +38,7 @@ class Header extends Component {
               </g>
             </svg>
           </div>
-        </a>
+        </a> */}
       </div>
     );
   }

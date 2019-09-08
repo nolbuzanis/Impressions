@@ -13,12 +13,13 @@
 .auth-button {
   box-sizing: border-box;
   position: absolute;
-  background: #474944;
+  background: none;
   padding: 8px 10px;
   border-radius: 5px;
   top: 15px;
   right: 15px;
   transition: all ease 0.5s;
+  text-decoration: none;
 }
 
 .auth-text {
@@ -32,4 +33,5 @@
 
 .auth-button:hover {
   background: black;
+  text-decoration: none;
 }
