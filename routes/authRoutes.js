@@ -12,7 +12,10 @@ module.exports = app => {
     '/auth/spotify/callback',
     passport.authenticate('spotify', {
       failureRedirect: '/'
-    })
+    }),
+    (req, res) => {
+      res.redirect('/profile');
+    }
   );
 
   app.get('/api/logout', (req, res) => {
