@@ -1,7 +1,9 @@
 .nav {
-  position: absolute;
+  position: relative;
   z-index: 20;
   width: 100%;
+  background: black;
+  height: 100px;
 }
 
 .auth-icon {
@@ -31,7 +33,11 @@
   transition: all ease 0.5s;
 }
 
-.auth-button:hover {
-  background: black;
+/* .auth-button:hover {
+  background: white;
   text-decoration: none;
 }
+
+.auth-button:hover .auth-text {
+  color: black;
+} */

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Header from './Header';
 
 class Dashboard extends Component {
   componentDidUpdate() {
@@ -8,7 +9,11 @@ class Dashboard extends Component {
     }
   }
   render() {
-    return <div>Profile</div>;
+    return (
+      <div>
+        <Header />
+      </div>
+    );
   }
 }
 

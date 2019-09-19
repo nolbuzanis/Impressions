@@ -5,8 +5,8 @@ class Header extends Component {
   render() {
     return (
       <div className='nav'>
-        {/* <a className='auth-button' href='/auth/spotify'>
-          <div className='auth-text'>Sign in with</div>
+        <a className='auth-button' href='/api/logout'>
+          <div className='auth-text'>Logout</div>
 
           <div className='auth-icon'>
             <svg
@@ -38,7 +38,7 @@ class Header extends Component {
               </g>
             </svg>
           </div>
-        </a> */}
+        </a>
       </div>
     );
   }
