@@ -3,6 +3,7 @@ const SpotifyStrategy = require('passport-spotify').Strategy;
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
 const User = mongoose.model('users');
+const axios = require('axios');
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -28,10 +29,13 @@ passport.use(
       if (!existingUser) {
         const newUser = await new User({
           spotifyId: profile.id,
-          name: profile.displayName
+          name: profile.displayName,
+          accessToken: accessToken
         }).save(); // create a new user
         done(null, newUser);
       }
+      existingUser.accessToken = accessToken;
+      existingUser.save();
       done(null, existingUser);
     }
   )
