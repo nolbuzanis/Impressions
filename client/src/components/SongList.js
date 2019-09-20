@@ -10,7 +10,6 @@ class SongList extends Component {
   renderListOfSongs = () => {
     if (this.props.library) {
       return this.props.library.map(song => {
-        console.log(song.name);
         return <p>{song.name}</p>;
       });
     }

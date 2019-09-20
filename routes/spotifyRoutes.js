@@ -20,7 +20,7 @@ module.exports = app => {
           name: track.name
         });
       });
-      console.log(songlist);
+
       res.send({ library: songlist });
     } catch (error) {
       console.error(error);
@@ -28,6 +28,9 @@ module.exports = app => {
   });
 
   app.get('/api/audio_features', (req, res) => {
-    // const ids = req.query.ids;
+    // Capture string of ids from object and convert them into an array
+    const ids = Object.values(req.query).join(',');
+
+    console.log(ids);
   });
 };
