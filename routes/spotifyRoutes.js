@@ -27,8 +27,7 @@ module.exports = app => {
     }
   });
 
-  // app.get('/api/audio_features', (req, res) => {
-  //   const ids = req.query.ids;
-
-  // });
+  app.get('/api/audio_features', (req, res) => {
+    // const ids = req.query.ids;
+  });
 };
