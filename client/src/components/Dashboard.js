@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
+import SongList from './SongList';
 
 class Dashboard extends Component {
   componentDidUpdate() {
@@ -8,10 +9,13 @@ class Dashboard extends Component {
       this.props.history.push('/');
     }
   }
+
   render() {
+    if (!this.props.auth) return <div>Loading...</div>;
     return (
       <div>
         <Header />
+        <SongList />
       </div>
     );
   }
@@ -23,5 +27,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  null
 )(Dashboard);

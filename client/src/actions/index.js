@@ -12,5 +12,9 @@ export const fetchUserLibrary = token => async dispatch => {
       Authorization: `Bearer ${token}`
     }
   });
-  dispatch({ type: FETCH_LIBRARY, payload: res.data.items });
+  const songs = [];
+  res.data.items.forEach(({ track }) => {
+    songs.push(track);
+  });
+  dispatch({ type: FETCH_LIBRARY, payload: songs });
 };
