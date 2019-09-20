@@ -6,10 +6,10 @@ const userSchema = new Schema({
   name: String,
   accessToken: String,
   tastes: {
-    accousticness: Float32Array,
-    danceability: Float32Array,
-    energy: Float32Array,
-    valence: Float32Array
+    accousticness: Number,
+    danceability: Number,
+    energy: Number,
+    valence: Number
   }
 });
 

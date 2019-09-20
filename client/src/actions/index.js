@@ -7,14 +7,14 @@ export const fetchUser = () => async dispatch => {
 };
 
 export const fetchUserLibrary = token => async dispatch => {
-  const res = await axios.get('https://api.spotify.com/v1/me/tracks', {
-    headers: {
-      Authorization: `Bearer ${token}`
+  const res = await axios.get('/api/current_user_library', {
+    params: {
+      token
     }
   });
   const songs = [];
-  res.data.items.forEach(({ track }) => {
-    songs.push(track);
-  });
-  dispatch({ type: FETCH_LIBRARY, payload: songs });
+  // res.data.items.forEach(({ track }) => {
+  //   songs.push(track);
+  // });
+  dispatch({ type: FETCH_LIBRARY, payload: res.data });
 };

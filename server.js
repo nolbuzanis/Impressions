@@ -23,6 +23,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app); // Spotify OAuth
+require('./routes/spotifyRoutes')(app); //routes for fetching data from Spotify Web API
 
 const PORT = process.env.PORT | 8000;
 app.listen(PORT, () => {
