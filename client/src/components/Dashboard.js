@@ -15,7 +15,7 @@ class Dashboard extends Component {
         listOfIds.push(id);
       });
       console.log(listOfIds);
-      this.props.fetchUserImpressions(listOfIds);
+      this.props.fetchUserImpressions(listOfIds, this.props.auth.accessToken);
     }
   }
 

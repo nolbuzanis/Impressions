@@ -6,7 +6,7 @@ const userSchema = new Schema({
   name: String,
   accessToken: String,
   tastes: {
-    accousticness: Number,
+    acousticness: Number,
     danceability: Number,
     energy: Number,
     valence: Number

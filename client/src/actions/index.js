@@ -16,10 +16,13 @@ export const fetchUserLibrary = token => async dispatch => {
   dispatch({ type: FETCH_LIBRARY, payload: res.data.library });
 };
 
-export const fetchUserImpressions = ids => async dispatch => {
+export const fetchUserImpressions = (ids, token) => async dispatch => {
   const res = await axios.get('/api/audio_features', {
-    params: ids
+    params: {
+      ids,
+      token
+    }
   });
 
-  dispatch({ type: FETCH_IMPRESSIONS, payload: res.data });
+  dispatch({ type: FETCH_IMPRESSIONS, payload: res.data.impressions });
 };
