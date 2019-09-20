@@ -12,12 +12,23 @@ module.exports = app => {
         }
       });
 
+      const songlist = []; // List of objects to hold the songs
+
       promise.data.items.forEach(({ track }) => {
-        console.log(track);
+        songlist.push({
+          id: track.id,
+          name: track.name
+        });
       });
-      //console.log(promise);
+      console.log(songlist);
+      res.send({ library: songlist });
     } catch (error) {
       console.error(error);
     }
   });
+
+  // app.get('/api/audio_features', (req, res) => {
+  //   const ids = req.query.ids;
+
+  // });
 };

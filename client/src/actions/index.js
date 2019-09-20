@@ -12,9 +12,6 @@ export const fetchUserLibrary = token => async dispatch => {
       token
     }
   });
-  const songs = [];
-  // res.data.items.forEach(({ track }) => {
-  //   songs.push(track);
-  // });
-  dispatch({ type: FETCH_LIBRARY, payload: res.data });
+
+  dispatch({ type: FETCH_LIBRARY, payload: res.data.library });
 };
