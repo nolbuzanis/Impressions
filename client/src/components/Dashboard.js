@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import SongList from './SongList';
 import { fetchUserImpressions } from '../actions';
+import FeatureGrid from './FeatureGrid';
 
 class Dashboard extends Component {
   componentDidUpdate() {
@@ -24,7 +25,8 @@ class Dashboard extends Component {
     return (
       <div>
         <Header />
-        <SongList />
+        <FeatureGrid />
+        {/* <SongList /> */}
       </div>
     );
   }
