@@ -6,7 +6,7 @@ class Header extends Component {
     return (
       <div className='nav'>
         <a className='auth-button' href='/api/logout'>
-          <div className='auth-text'>Logout</div>
+          <div className='auth-text'>Log Out</div>
 
           <div className='auth-icon'>
             <svg

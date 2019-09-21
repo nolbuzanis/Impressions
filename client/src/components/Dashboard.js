@@ -4,6 +4,7 @@ import Header from './Header';
 import SongList from './SongList';
 import { fetchUserImpressions } from '../actions';
 import FeatureGrid from './FeatureGrid';
+import './Dashboard.css';
 
 class Dashboard extends Component {
   componentDidUpdate() {
@@ -23,9 +24,9 @@ class Dashboard extends Component {
   render() {
     if (!this.props.auth) return <div>Loading...</div>;
     return (
-      <div>
+      <div className='dashboard-container blue-grey darken-4'>
         <Header />
-        <FeatureGrid />
+        <FeatureGrid tastes={this.props.auth.tastes} />
         {/* <SongList /> */}
       </div>
     );
