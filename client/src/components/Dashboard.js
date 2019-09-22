@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
-import SongList from './SongList';
-import { fetchUserImpressions } from '../actions';
+import { fetchUserImpressions, fetchUserLibrary } from '../actions';
 import FeatureGrid from './FeatureGrid';
 import './Dashboard.css';
 
@@ -21,7 +20,16 @@ class Dashboard extends Component {
     }
   }
 
+  componentWillMount() {
+    if (this.props.auth) {
+      this.props.fetchUserLibrary(this.props.auth.accessToken);
+    }
+  }
+
   render() {
+    if (this.props.auth && !this.props.library) {
+      this.props.fetchUserLibrary(this.props.auth.accessToken);
+    }
     if (!this.props.auth) return <div>Loading...</div>;
     return (
       <div className='dashboard-container blue-grey darken-4'>
@@ -39,5 +47,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchUserImpressions }
+  { fetchUserImpressions, fetchUserLibrary }
 )(Dashboard);
