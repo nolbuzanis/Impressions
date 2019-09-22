@@ -1,10 +1,31 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 class Header extends Component {
   render() {
+    //console.log(this.props.history.pathname);
+    console.log(this.props.currentPath);
     return (
-      <div className='nav'>
+      <div className='sidenav sidenav-fixed'>
+        <ul className='center nav-links'>
+          <Link
+            to='/profile'
+            className={`nav-link ${
+              this.props.currentPath === '/profile' ? 'active' : ''
+            }`}
+          >
+            Profile
+          </Link>
+          <Link
+            to='/allsongs'
+            className={`nav-link ${
+              this.props.currentPath === '/allsongs' ? 'active' : ''
+            }`}
+          >
+            Song Library
+          </Link>
+        </ul>
         <div
           style={{
             position: 'absolute',
@@ -45,17 +66,6 @@ class Header extends Component {
           {this.props.name}
         </div>
 
-        <h4
-          className='center'
-          style={{
-            marginTop: '0',
-            paddingTop: '15px',
-            color: 'black',
-            letterSpacing: '0.1em'
-          }}
-        >
-          Your Profile
-        </h4>
         <a className='auth-button' href='/api/logout'>
           <div className='auth-text'>Log Out</div>
 
