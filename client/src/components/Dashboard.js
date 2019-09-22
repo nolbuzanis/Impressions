@@ -25,7 +25,7 @@ class Dashboard extends Component {
     if (!this.props.auth) return <div>Loading...</div>;
     return (
       <div className='dashboard-container blue-grey darken-4'>
-        <Header />
+        <Header name={this.props.auth.name} />
         <FeatureGrid tastes={this.props.auth.tastes} />
         {/* <SongList /> */}
       </div>

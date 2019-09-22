@@ -7,7 +7,7 @@ class featureGrid extends React.Component {
 
     console.log(tastes);
     return (
-      <div className='row container'>
+      <div className='row'>
         <FeatureSpotlight
           name='acousticness'
           percentage={tastes.acousticness}

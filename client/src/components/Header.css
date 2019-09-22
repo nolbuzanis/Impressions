@@ -2,9 +2,15 @@
   position: relative;
   z-index: 20;
   width: 100%;
-  background: rgb(197, 184, 113);
+  background: rgba(255, 255, 255, 1);
   height: 70px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.profile-icon {
+  width: 30px;
+  height: 30px;
+  float: left;
 }
 
 .auth-icon {
@@ -14,7 +20,7 @@
 }
 
 .auth-icon path {
-  fill: white;
+  fill: black;
 }
 
 .auth-button {
@@ -30,7 +36,7 @@
 }
 
 .auth-text {
-  color: white;
+  color: black;
   font-size: 20px;
   line-height: 5px;
   padding: 15px 10px;
