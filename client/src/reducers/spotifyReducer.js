@@ -1,7 +1,6 @@
 import { FETCH_LIBRARY, FETCH_IMPRESSIONS } from '../actions/types';
 
 export default (state = {}, action) => {
-  console.log(action);
   switch (action.type) {
     case FETCH_LIBRARY: {
       return { ...state, library: action.payload };

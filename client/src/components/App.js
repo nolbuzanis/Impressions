@@ -15,7 +15,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(history);
     return (
       <div>
         <Router history={history}>

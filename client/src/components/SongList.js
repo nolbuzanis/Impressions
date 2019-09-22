@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUserLibrary } from '../actions';
 
+import './SongList.css';
+
 class SongList extends Component {
   componentDidMount() {
     if (!this.props.library) {
@@ -11,15 +13,36 @@ class SongList extends Component {
 
   renderListOfSongs = () => {
     if (this.props.library) {
+      console.log(this.props.library.length);
       return this.props.library.map(song => {
-        return <p>{song.name}</p>;
+        console.log(song);
+        return (
+          <li key={song.id} className='collection-item'>
+            {song.name}
+          </li>
+        );
       });
     }
     return null;
   };
 
   render() {
-    return <div>{this.renderListOfSongs()}</div>;
+    return (
+      <div style={{ paddingLeft: '200px' }} className='blue-grey darken-4'>
+        <h4
+          className='center'
+          style={{
+            marginTop: '0',
+            paddingTop: '50px',
+            color: 'white',
+            letterSpacing: '0.1em'
+          }}
+        >
+          Your Library
+        </h4>
+        <ul className='collection songlist'>{this.renderListOfSongs()}</ul>
+      </div>
+    );
   }
 }
 

@@ -71,7 +71,6 @@ module.exports = app => {
         energy: total_e / numberOfSongs,
         valence: total_v / numberOfSongs
       };
-      console.log(impressions);
 
       // Store those values for each user
       const isUser = await User.findOne({ accessToken: token });
