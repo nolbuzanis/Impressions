@@ -18,7 +18,7 @@ class Landing extends React.Component {
             <p>
               discover your <strong>personal</strong> taste in music
             </p>
-            <a href='/auth/spotify' className='call-to-action btn'>
+            <a href='/auth/spotify' className='call-to-action'>
               <div style={{ position: 'relative' }}>
                 <div className='cta-text'>Sign in with</div>
                 <svg
