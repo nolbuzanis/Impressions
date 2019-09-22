@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
+import history from './history';
 
 class Header extends Component {
   render() {
-    //console.log(this.props.history.pathname);
-    console.log(this.props.currentPath);
     return (
       <div className='sidenav sidenav-fixed'>
         <ul className='center nav-links'>
           <Link
-            to='/profile'
+            to='/'
             className={`nav-link ${
-              this.props.currentPath === '/profile' ? 'active' : ''
+              history.location.pathname === '/' ? 'active' : ''
             }`}
           >
             Profile
@@ -20,7 +19,7 @@ class Header extends Component {
           <Link
             to='/allsongs'
             className={`nav-link ${
-              this.props.currentPath === '/allsongs' ? 'active' : ''
+              history.location.pathname === '/allsongs' ? 'active' : ''
             }`}
           >
             Song Library

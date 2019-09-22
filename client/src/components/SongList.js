@@ -4,7 +4,9 @@ import { fetchUserLibrary } from '../actions';
 
 class SongList extends Component {
   componentDidMount() {
-    this.props.fetchUserLibrary(this.props.auth.accessToken);
+    if (!this.props.library) {
+      this.props.fetchUserLibrary(this.props.auth.accessToken);
+    }
   }
 
   renderListOfSongs = () => {

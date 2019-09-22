@@ -3,12 +3,6 @@ import './Landing.css';
 import { connect } from 'react-redux';
 
 class Landing extends React.Component {
-  componentDidUpdate() {
-    if (this.props.auth) {
-      this.props.history.push('/profile');
-    }
-  }
-
   render() {
     return (
       <div className='landing-container'>
