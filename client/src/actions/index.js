@@ -24,5 +24,5 @@ export const fetchUserImpressions = (ids, token) => async dispatch => {
     }
   });
 
-  dispatch({ type: FETCH_IMPRESSIONS, payload: res.data.impressions });
+  dispatch({ type: FETCH_IMPRESSIONS, payload: res.data });
 };

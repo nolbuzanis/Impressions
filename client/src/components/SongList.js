@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUserLibrary } from '../actions';
+import { fetchUserLibrary, fetchUserImpressions } from '../actions';
 
 import './SongList.css';
 
@@ -10,16 +10,34 @@ class SongList extends Component {
       this.props.fetchUserLibrary(this.props.auth.accessToken);
     }
   }
+  componentDidUpdate() {
+    if (this.props.library && !this.props.audioFeatures) {
+      const listOfIds = [];
+      this.props.library.forEach(({ id }) => {
+        listOfIds.push(id);
+      });
+      this.props.fetchUserImpressions(listOfIds, this.props.auth.accessToken);
+    }
+  }
 
   renderListOfSongs = () => {
-    if (this.props.library) {
-      console.log(this.props.library.length);
+    if (this.props.library && this.props.audioFeatures) {
       return this.props.library.map(song => {
+        this.props.audioFeatures.allsongs.forEach(features => {
+          if (features.id === song.id) {
+            song.features = features;
+            console.log(song.features);
+          }
+        });
         return (
           <tr key={song.id} className='collection-item'>
             <td>{song.name}</td>
             <td>{song.artists.join(', ')}</td>
             <td>{song.album}</td>
+            <td>{Math.round(song.features.a * 100)}</td>
+            <td>{Math.round(song.features.d * 100)}</td>
+            <td>{Math.round(song.features.e * 100)}</td>
+            <td>{Math.round(song.features.v * 100)}</td>
           </tr>
         );
       });
@@ -63,10 +81,14 @@ class SongList extends Component {
 }
 
 const mapStateToProps = state => {
-  return { auth: state.auth, library: state.spotify.library };
+  return {
+    auth: state.auth,
+    library: state.spotify.library,
+    audioFeatures: state.spotify.audioFeatures
+  };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchUserLibrary }
+  { fetchUserLibrary, fetchUserImpressions }
 )(SongList);

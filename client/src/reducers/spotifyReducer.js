@@ -6,7 +6,7 @@ export default (state = {}, action) => {
       return { ...state, library: action.payload };
     }
     case FETCH_IMPRESSIONS: {
-      return { ...state, impressions: action.payload };
+      return { ...state, audioFeatures: action.payload };
     }
     default:
       return state;

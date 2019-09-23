@@ -9,6 +9,7 @@
   color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
   font-weight: 300;
+  font-size: 14px;
 }
 .songlist.collection td {
   font-size: 13px;

@@ -38,7 +38,7 @@ module.exports = app => {
           });
         });
         //console.log(promise.data);
-        if (promise.data.items.length < 20 || offset > 60) {
+        if (promise.data.items.length < 20 || offset > 20) {
           //console.log(promise.data.items[0]);
           // Reached last set of songs from library, exit loop
           break;
@@ -74,13 +74,24 @@ module.exports = app => {
       var total_d = 0.0; //danceability
       var total_e = 0.0; //energy
       var total_v = 0.0; //valence
+      songFeatures = [];
 
       promise.data.audio_features.forEach(object => {
+        songFeatures.push({
+          id: object.id,
+          a: object.acousticness,
+          d: object.danceability,
+          e: object.energy,
+          v: object.valence
+        });
+
+        // Add to ongoing sum
         total_a += object.acousticness;
         total_d += object.danceability;
         total_e += object.energy;
         total_v += object.valence;
       });
+      console.log(songFeatures);
 
       // console.log('Total acousticness:', total_a);
       // console.log('Total danceability:', total_d);
@@ -106,7 +117,7 @@ module.exports = app => {
       }
 
       // Send values back to front-end using res object
-      res.send({ impressions });
+      res.send({ impressions, allsongs: songFeatures });
     } catch (error) {
       console.log(error);
     }
