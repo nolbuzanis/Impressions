@@ -6,21 +6,38 @@ const User = mongoose.model('users');
 module.exports = app => {
   app.get('/api/current_user_library', async (req, res) => {
     try {
-      const promise = await axios.get('https://api.spotify.com/v1/me/tracks', {
-        headers: {
-          Authorization: `Bearer ${req.query.token}`
-        }
-      });
-
+      var offset = 0;
       const songlist = []; // List of objects to hold the songs
 
-      promise.data.items.forEach(({ track }) => {
-        songlist.push({
-          id: track.id,
-          name: track.name
-        });
-      });
+      while (true) {
+        const promise = await axios.get(
+          'https://api.spotify.com/v1/me/tracks',
+          {
+            headers: {
+              Authorization: `Bearer ${req.query.token}`
+            },
+            params: {
+              offset: `${offset}`,
+              limit: '20'
+            }
+          }
+        );
 
+        offset += 20;
+
+        promise.data.items.forEach(({ track }) => {
+          songlist.push({
+            id: track.id,
+            name: track.name
+          });
+        });
+        //console.log(promise.data);
+        if (promise.data.items.length < 20 || offset > 60) {
+          console.log(promise.data.items[0]);
+          // Reached last set of songs from library, exit loop
+          break;
+        }
+      }
       res.send({ library: songlist });
     } catch (error) {
       console.error(error);
@@ -77,7 +94,7 @@ module.exports = app => {
       if (!isUser) {
         console.log('Error: No user matches this request!');
       } else {
-        console.log(isUser);
+        //console.log(isUser);
         isUser.tastes = impressions;
         isUser.save();
       }

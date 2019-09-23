@@ -1,9 +1,11 @@
-.songlist.collection li {
+.songlist.collection tr {
   background: transparent;
   color: white;
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
-.songlist.collection {
-  border: none;
+
+.songlist.collection th {
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
 }

@@ -15,11 +15,12 @@ class SongList extends Component {
     if (this.props.library) {
       console.log(this.props.library.length);
       return this.props.library.map(song => {
-        console.log(song);
         return (
-          <li key={song.id} className='collection-item'>
-            {song.name}
-          </li>
+          <tr key={song.id} className='collection-item'>
+            <td>{song.name}</td>
+            <td>Alvin</td>
+            <td>Alvin</td>
+          </tr>
         );
       });
     }
@@ -40,7 +41,18 @@ class SongList extends Component {
         >
           Your Library
         </h4>
-        <ul className='collection songlist'>{this.renderListOfSongs()}</ul>
+
+        <table className='container collection songlist'>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Artist</th>
+              <th>Album</th>
+            </tr>
+          </thead>
+
+          <tbody>{this.renderListOfSongs()}</tbody>
+        </table>
       </div>
     );
   }
