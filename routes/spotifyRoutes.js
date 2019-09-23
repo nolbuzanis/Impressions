@@ -26,14 +26,20 @@ module.exports = app => {
         offset += 20;
 
         promise.data.items.forEach(({ track }) => {
+          //console.log('--------------------');
+          //console.log(track.artists);
           songlist.push({
             id: track.id,
-            name: track.name
+            name: track.name,
+            artists: track.artists.map(({ name }) => {
+              return name;
+            }),
+            album: track.album.name
           });
         });
         //console.log(promise.data);
         if (promise.data.items.length < 20 || offset > 60) {
-          console.log(promise.data.items[0]);
+          //console.log(promise.data.items[0]);
           // Reached last set of songs from library, exit loop
           break;
         }

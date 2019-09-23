@@ -8,4 +8,10 @@
 .songlist.collection th {
   color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
+  font-weight: 300;
+}
+.songlist.collection td {
+  font-size: 13px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }

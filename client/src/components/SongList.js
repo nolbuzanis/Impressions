@@ -18,8 +18,8 @@ class SongList extends Component {
         return (
           <tr key={song.id} className='collection-item'>
             <td>{song.name}</td>
-            <td>Alvin</td>
-            <td>Alvin</td>
+            <td>{song.artists.join(', ')}</td>
+            <td>{song.album}</td>
           </tr>
         );
       });
@@ -48,6 +48,10 @@ class SongList extends Component {
               <th>Title</th>
               <th>Artist</th>
               <th>Album</th>
+              <th>Acousticness</th>
+              <th>Danceability</th>
+              <th>Energy</th>
+              <th>Valence</th>
             </tr>
           </thead>
 
