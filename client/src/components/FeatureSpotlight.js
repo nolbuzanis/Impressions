@@ -10,9 +10,7 @@ class featureSpotlight extends React.Component {
         <div style={{ margin: '20%' }}>
           <CircularProgressbar
             value={this.props.percentage * 100}
-            text={`${Math.round(this.props.percentage * 100) / 100}${
-              Math.round(this.props.percentage * 100) % 10 === 0 ? '0' : ''
-            }  `}
+            text={`${Math.round(this.props.percentage * 100)}`}
             strokeWidth='6'
             styles={buildStyles({
               // Rotation of path and trail, in number of turns (0-1)
