@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_LIBRARY, FETCH_IMPRESSIONS } from './types';
+import {
+  FETCH_USER,
+  FETCH_LIBRARY,
+  FETCH_IMPRESSIONS,
+  PLAY_SONG
+} from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -25,4 +30,20 @@ export const fetchUserImpressions = (ids, token) => async dispatch => {
   });
 
   dispatch({ type: FETCH_IMPRESSIONS, payload: res.data });
+};
+
+export const playSong = (token, uris) => async dispatch => {
+  const res = await axios.put('https://api.spotify.com/v1/me/player/play', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    params: {
+      device_id: 'Impressions Web App'
+    },
+    data: {
+      uris
+    }
+  });
+
+  dispatch({ type: PLAY_SONG, payload: res.data });
 };

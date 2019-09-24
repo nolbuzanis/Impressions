@@ -8,27 +8,27 @@ class Player extends React.Component {
       <ul className='fixed-bottom player'>
         <li>
           <Link to='/' className='player-link'>
-            <i class='material-icons'>shuffle</i>
+            <i className='material-icons'>shuffle</i>
           </Link>
         </li>
         <li>
           <Link to='/' className='player-link'>
-            <i class='material-icons'>skip_previous</i>
+            <i className='material-icons'>skip_previous</i>
           </Link>
         </li>
         <li>
           <Link to='/' className='player-link'>
-            <i class='material-icons'>play_arrow</i>
+            <i className='material-icons'>play_arrow</i>
           </Link>
         </li>
         <li>
           <Link to='/' className='player-link'>
-            <i class='material-icons'>skip_next</i>
+            <i className='material-icons'>skip_next</i>
           </Link>
         </li>
         <li>
           <Link to='/' className='player-link'>
-            <i class='material-icons'>repeat</i>
+            <i className='material-icons'>repeat</i>
           </Link>
         </li>
       </ul>

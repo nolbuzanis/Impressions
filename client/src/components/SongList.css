@@ -1,6 +1,7 @@
 .listofallsongs {
   font-size: 12px;
   color: rgba(0, 0, 0, 1);
+  margin-bottom: 100px;
 }
 
 .table-rows td p {

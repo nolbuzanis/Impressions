@@ -26,12 +26,18 @@ class SongList extends Component {
         this.props.audioFeatures.allsongs.forEach(features => {
           if (features.id === song.id) {
             song.features = features;
-            console.log(song.features);
           }
         });
 
         return (
-          <tr key={song.id} scope='row' class='table-rows table-data'>
+          <tr
+            key={song.id}
+            scope='row'
+            className='table-rows table-data'
+            onClick={() => {
+              console.log(song.id);
+            }}
+          >
             <td className='middle-align'>{i + 1}</td>
             <td>
               <p className='song-name'>{song.name}</p>
@@ -56,10 +62,10 @@ class SongList extends Component {
 
   render() {
     return (
-      <div className='container' style={{ paddingTop: '100px' }}>
+      <div className='container' style={{ paddingTop: '120px' }}>
         <table className='table listofallsongs'>
           <thead>
-            <tr class='table-rows table-headings'>
+            <tr className='table-rows table-headings'>
               <th scope='col' className='middle-align'>
                 No.
               </th>

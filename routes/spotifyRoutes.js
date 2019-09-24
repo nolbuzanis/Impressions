@@ -33,10 +33,11 @@ module.exports = app => {
               return name;
             }),
             album: track.album.name,
-            duration: track.duration_ms
+            duration: track.duration_ms,
+            uri: track.uri
           });
         });
-        //console.log(promise.data);
+
         if (promise.data.items.length < 20 || offset > 20) {
           //console.log(promise.data.items[0]);
           // Reached last set of songs from library, exit loop
