@@ -47,7 +47,7 @@ class SongList extends Component {
 
   render() {
     return (
-      <div style={{ paddingLeft: '200px' }} className='blue-grey darken-4'>
+      <div className='blue-grey darken-4'>
         <h4
           className='center'
           style={{
@@ -60,7 +60,7 @@ class SongList extends Component {
           Your Library
         </h4>
 
-        <table className='container collection songlist'>
+        <table className='table songlist'>
           <thead>
             <tr>
               <th>Title</th>

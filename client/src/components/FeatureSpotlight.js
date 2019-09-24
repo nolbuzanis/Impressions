@@ -30,13 +30,13 @@ class featureSpotlight extends React.Component {
 
               // Colors
               pathColor: `${this.props.pathColor}`,
-              textColor: 'rgba(255,255,255,0.9)',
-              trailColor: 'rgba(255,255,255,0.2)',
+              textColor: 'rgba(0,0,0,0.9)',
+              trailColor: 'rgba(0,0,0,0.1)',
               backgroundColor: 'white'
             })}
           />
         </div>
-        <h5 style={{ color: 'white', textAlign: 'center' }}>
+        <h5 style={{ color: 'rgba(0,0,0,0.8)', textAlign: 'center' }}>
           {this.props.name}
         </h5>
       </div>
