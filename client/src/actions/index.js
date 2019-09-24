@@ -32,18 +32,22 @@ export const fetchUserImpressions = (ids, token) => async dispatch => {
   dispatch({ type: FETCH_IMPRESSIONS, payload: res.data });
 };
 
-export const playSong = (token, uris) => async dispatch => {
-  const res = await axios.put('https://api.spotify.com/v1/me/player/play', {
+export const playSong = (token, uri) => async dispatch => {
+  const config = {
     headers: {
       Authorization: `Bearer ${token}`
-    },
-    params: {
-      device_id: 'Impressions Web App'
-    },
-    data: {
-      uris
     }
-  });
+  };
+
+  const data = {
+    uris: [uri]
+  };
+
+  const res = await axios.put(
+    'https://api.spotify.com/v1/me/player/play',
+    data,
+    config
+  );
 
   dispatch({ type: PLAY_SONG, payload: res.data });
 };

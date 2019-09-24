@@ -4,7 +4,13 @@ module.exports = app => {
   app.get(
     '/auth/spotify',
     passport.authenticate('spotify', {
-      scope: ['user-library-read', 'user-read-email', 'user-read-private']
+      scope: [
+        'user-library-read',
+        'user-read-email',
+        'user-read-private',
+        'user-modify-playback-state',
+        'user-read-playback-state'
+      ]
     })
   );
 

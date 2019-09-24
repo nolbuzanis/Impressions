@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUserLibrary, fetchUserImpressions } from '../actions';
+import { fetchUserLibrary, fetchUserImpressions, playSong } from '../actions';
 
 import './SongList.css';
 
@@ -35,7 +35,7 @@ class SongList extends Component {
             scope='row'
             className='table-rows table-data'
             onClick={() => {
-              console.log(song.id);
+              this.props.playSong(this.props.auth.accessToken, song.uri);
             }}
           >
             <td className='middle-align'>{i + 1}</td>
@@ -93,5 +93,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchUserLibrary, fetchUserImpressions }
+  { fetchUserLibrary, fetchUserImpressions, playSong }
 )(SongList);
