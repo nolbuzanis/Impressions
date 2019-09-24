@@ -13,7 +13,7 @@ class Header extends Component {
             </li>
           </ul> */}
 
-        <ul className='nav '>
+        <ul className='nav fixed-top'>
           <li className='nav-item'>
             <Link to='/' className='nav-link profile-button'>
               <div className=' profile-icon material-icons'>

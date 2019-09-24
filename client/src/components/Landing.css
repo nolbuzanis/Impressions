@@ -67,6 +67,7 @@ h1 {
 .call-to-action:hover {
   color: white;
   background-position: left bottom;
+  text-decoration: none;
 }
 
 .spotify-logo {

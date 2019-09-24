@@ -6,7 +6,7 @@ import history from './history';
 
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-import SongList from './SongList';
+import Library from './Library';
 import Header from './Header';
 
 class App extends Component {
@@ -26,7 +26,7 @@ class App extends Component {
           />
           <Route
             path='/allsongs'
-            component={!this.props.auth ? Landing : SongList}
+            component={!this.props.auth ? Landing : Library}
           />
         </Router>
       </div>

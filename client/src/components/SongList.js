@@ -56,7 +56,7 @@ class SongList extends Component {
 
   render() {
     return (
-      <div className='container' style={{ marginTop: '40px' }}>
+      <div className='container' style={{ paddingTop: '100px' }}>
         <table className='table listofallsongs'>
           <thead>
             <tr class='table-rows table-headings'>
