@@ -22,22 +22,31 @@ class SongList extends Component {
 
   renderListOfSongs = () => {
     if (this.props.library && this.props.audioFeatures) {
-      return this.props.library.map(song => {
+      return this.props.library.map((song, i) => {
         this.props.audioFeatures.allsongs.forEach(features => {
           if (features.id === song.id) {
             song.features = features;
             console.log(song.features);
           }
         });
+
         return (
-          <tr key={song.id} className='collection-item'>
-            <td>{song.name}</td>
-            <td>{song.artists.join(', ')}</td>
-            <td>{song.album}</td>
-            <td>{Math.round(song.features.a * 100)}</td>
-            <td>{Math.round(song.features.d * 100)}</td>
-            <td>{Math.round(song.features.e * 100)}</td>
-            <td>{Math.round(song.features.v * 100)}</td>
+          <tr key={song.id} scope='row' class='table-rows table-data'>
+            <td className='middle-align'>{i + 1}</td>
+            <td>
+              <p className='song-name'>{song.name}</p>
+              <p>
+                {song.artists.join(', ')} | {song.album}
+              </p>
+            </td>
+
+            <td className='middle-align'>
+              {`${Math.floor(song.duration / 1000 / 60)} : ${
+                Math.round((song.duration / 1000) % 60) < 10
+                  ? `${Math.round((song.duration / 1000) % 60)}0`
+                  : `${Math.round((song.duration / 1000) % 60)}`
+              }`}
+            </td>
           </tr>
         );
       });
@@ -47,29 +56,17 @@ class SongList extends Component {
 
   render() {
     return (
-      <div className='blue-grey darken-4'>
-        <h4
-          className='center'
-          style={{
-            marginTop: '0',
-            paddingTop: '50px',
-            color: 'white',
-            letterSpacing: '0.1em'
-          }}
-        >
-          Your Library
-        </h4>
-
-        <table className='table songlist'>
+      <div className='container' style={{ marginTop: '40px' }}>
+        <table className='table listofallsongs'>
           <thead>
-            <tr>
-              <th>Title</th>
-              <th>Artist</th>
-              <th>Album</th>
-              <th>Acousticness</th>
-              <th>Danceability</th>
-              <th>Energy</th>
-              <th>Valence</th>
+            <tr class='table-rows table-headings'>
+              <th scope='col' className='middle-align'>
+                No.
+              </th>
+              <th scope='col'>Track</th>
+              <th scope='col' className='middle-align'>
+                Time
+              </th>
             </tr>
           </thead>
 

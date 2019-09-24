@@ -26,15 +26,14 @@ module.exports = app => {
         offset += 20;
 
         promise.data.items.forEach(({ track }) => {
-          //console.log('--------------------');
-          //console.log(track.artists);
           songlist.push({
             id: track.id,
             name: track.name,
             artists: track.artists.map(({ name }) => {
               return name;
             }),
-            album: track.album.name
+            album: track.album.name,
+            duration: track.duration_ms
           });
         });
         //console.log(promise.data);
@@ -91,7 +90,6 @@ module.exports = app => {
         total_e += object.energy;
         total_v += object.valence;
       });
-      console.log(songFeatures);
 
       // console.log('Total acousticness:', total_a);
       // console.log('Total danceability:', total_d);

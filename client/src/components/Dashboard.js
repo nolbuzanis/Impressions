@@ -22,14 +22,14 @@ class Dashboard extends Component {
     }
     if (!this.props.auth) return <div>Loading...</div>;
     return (
-      <div className='dashboard-container blue-grey darken-4'>
+      <div className='container'>
         <h4
-          className='center'
           style={{
             marginTop: '0',
             paddingTop: '50px',
-            color: 'white',
-            letterSpacing: '0.1em'
+            color: 'rgba(0,0,0,0.8)',
+            letterSpacing: '0.1em',
+            paddingLeft: '50px'
           }}
         >
           Your Impressions

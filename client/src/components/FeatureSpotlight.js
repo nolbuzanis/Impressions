@@ -6,7 +6,7 @@ import 'react-circular-progressbar/dist/styles.css';
 class featureSpotlight extends React.Component {
   render() {
     return (
-      <div className='col s12 m6 l3' style={{ padding: '20px' }}>
+      <div className='col-sm' style={{ padding: '20px' }}>
         <div style={{ margin: '20%' }}>
           <CircularProgressbar
             value={this.props.percentage * 100}
