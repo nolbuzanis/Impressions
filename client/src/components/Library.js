@@ -6,10 +6,16 @@ import history from './history';
 import { Redirect } from 'react-router-dom';
 
 class Library extends React.Component {
+  componentDidMount() {
+    if (window.loadedSpotifyPlayer) {
+      this.initializePlayer();
+    }
+  }
+
   initializePlayer = () => {
     if (window.Spotify !== null) {
       console.log('Initializing...');
-      console.log(this.props.auth.accessToken);
+
       this.player = new window.Spotify.Player({
         name: 'Impressions',
         getOAuthToken: cb => {
@@ -52,10 +58,6 @@ class Library extends React.Component {
   };
 
   render() {
-    if (window.loadedSpotifyPlayer) {
-      this.initializePlayer();
-    }
-
     return (
       <div>
         <SongList />
