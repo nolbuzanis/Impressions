@@ -1,6 +1,7 @@
 import React from 'react';
 import './Player.css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Player extends React.Component {
   render() {
@@ -36,4 +37,4 @@ class Player extends React.Component {
   }
 }
 
-export default Player;
+export default connect()(Player);

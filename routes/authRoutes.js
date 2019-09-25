@@ -9,7 +9,8 @@ module.exports = app => {
         'user-read-email',
         'user-read-private',
         'user-modify-playback-state',
-        'user-read-playback-state'
+        'user-read-playback-state',
+        'streaming'
       ]
     })
   );
