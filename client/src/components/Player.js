@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 class Player extends React.Component {
+  state = {};
+
   componentDidMount() {
     if (window.loadedSpotifyPlayer) {
       this.initializePlayer();
@@ -41,7 +43,7 @@ class Player extends React.Component {
 
       // Playback status updates
       this.player.on('player_state_changed', state => {
-        console.log(state);
+        this.onStateChanged(state);
       });
 
       // Ready
@@ -52,10 +54,40 @@ class Player extends React.Component {
       // Not Ready
       this.player.addListener('not_ready', ({ device_id }) => {
         console.log('Device ID has gone offline', device_id);
+        this.setState({ deviceId: device_id });
       });
       this.player.connect();
     }
     console.log(this.player);
+  };
+
+  //Handle players state to update our own component level state
+  onStateChanged = state => {
+    // If no longer listening to music, return
+    if (state === null) {
+      return;
+    }
+    const currentTrack = state.track_window.current_track;
+
+    const trackName = currentTrack.name;
+    const albumName = currentTrack.album;
+    const artistName = currentTrack.artists
+      .map(artist => {
+        return artist.name;
+      })
+      .join(',');
+    const { paused, shuffle, repeat_mode, duration, position } = state;
+
+    this.setState({
+      trackName,
+      albumName,
+      artistName,
+      paused,
+      shuffle,
+      repeat_mode,
+      duration,
+      position
+    });
   };
 
   render() {
