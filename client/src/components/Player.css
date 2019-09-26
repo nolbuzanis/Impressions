@@ -34,3 +34,38 @@ button {
   border: none;
   background: none;
 }
+
+button:active {
+  outline: none;
+}
+
+.currently-playing .album-artwork {
+  height: 40px;
+  width: 40px;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: inline-block;
+  border: none;
+}
+.currently-playing .song-info {
+  display: inline-block;
+  height: 100%;
+}
+.currently-playing {
+  height: 60px;
+  position: absolute;
+  left: 0;
+}
+
+.currently-playing p {
+  position: relative;
+  margin: 0;
+  top: -5px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+.currently-playing .song-name {
+  font-size: 16px;
+}

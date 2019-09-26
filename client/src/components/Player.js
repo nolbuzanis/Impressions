@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 class Player extends React.Component {
-  state = { paused: true };
+  state = { paused: true, album: null };
 
   componentDidMount() {
     if (window.loadedSpotifyPlayer) {
@@ -70,7 +70,7 @@ class Player extends React.Component {
     const currentTrack = state.track_window.current_track;
 
     const trackName = currentTrack.name;
-    const albumName = currentTrack.album;
+    const album = currentTrack.album;
     const artistName = currentTrack.artists
       .map(artist => {
         return artist.name;
@@ -78,9 +78,10 @@ class Player extends React.Component {
       .join(',');
     const { paused, shuffle, repeat_mode, duration, position } = state;
 
+    console.log(album);
     this.setState({
       trackName,
-      albumName,
+      album,
       artistName,
       paused,
       shuffle,
@@ -92,35 +93,60 @@ class Player extends React.Component {
 
   render() {
     return (
-      <ul className='fixed-bottom player'>
-        <li>
-          <button className='player-link'>
-            <i className='material-icons'>shuffle</i>
-          </button>
-        </li>
-        <li>
-          <button className='player-link'>
-            <i className='material-icons'>skip_previous</i>
-          </button>
-        </li>
-        <li>
-          <button className='player-link'>
-            <i className='material-icons'>
-              {this.state.paused ? 'play_arrow' : 'pause'}
-            </i>
-          </button>
-        </li>
-        <li>
-          <button className='player-link'>
-            <i className='material-icons'>skip_next</i>
-          </button>
-        </li>
-        <li>
-          <button className='player-link'>
-            <i className='material-icons'>repeat</i>
-          </button>
-        </li>
-      </ul>
+      <div className='fixed-bottom player'>
+        <div className='currently-playing'>
+          <div
+            className='album-artwork'
+            style={{
+              background: `url(${
+                this.state.album ? `${this.state.album.images[1].url}` : ''
+              })`
+            }}
+          ></div>
+          <div className='song-info'>
+            <p className='song-name'>{this.state.trackName}</p>
+            <p>{this.state.artistName}</p>
+          </div>
+        </div>
+        <ul className='player-controls'>
+          <li>
+            <button className='player-link'>
+              <i className='material-icons'>shuffle</i>
+            </button>
+          </li>
+          <li>
+            <button
+              className='player-link'
+              onClick={() => this.player.previousTrack()}
+            >
+              <i className='material-icons'>skip_previous</i>
+            </button>
+          </li>
+          <li>
+            <button
+              className='player-link'
+              onClick={() => this.player.togglePlay()}
+            >
+              <i className='material-icons'>
+                {this.state.paused ? 'play_arrow' : 'pause'}
+              </i>
+            </button>
+          </li>
+          <li>
+            <button
+              className='player-link'
+              onClick={() => this.player.nextTrack()}
+            >
+              <i className='material-icons'>skip_next</i>
+            </button>
+          </li>
+          <li>
+            <button className='player-link'>
+              <i className='material-icons'>repeat</i>
+            </button>
+          </li>
+        </ul>
+      </div>
     );
   }
 }
