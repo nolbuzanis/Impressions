@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 class Player extends React.Component {
-  state = {};
+  state = { paused: true };
 
   componentDidMount() {
     if (window.loadedSpotifyPlayer) {
@@ -94,29 +94,31 @@ class Player extends React.Component {
     return (
       <ul className='fixed-bottom player'>
         <li>
-          <Link to='/' className='player-link'>
+          <button className='player-link'>
             <i className='material-icons'>shuffle</i>
-          </Link>
+          </button>
         </li>
         <li>
-          <Link to='/' className='player-link'>
+          <button className='player-link'>
             <i className='material-icons'>skip_previous</i>
-          </Link>
+          </button>
         </li>
         <li>
-          <Link to='/' className='player-link'>
-            <i className='material-icons'>play_arrow</i>
-          </Link>
+          <button className='player-link'>
+            <i className='material-icons'>
+              {this.state.paused ? 'play_arrow' : 'pause'}
+            </i>
+          </button>
         </li>
         <li>
-          <Link to='/' className='player-link'>
+          <button className='player-link'>
             <i className='material-icons'>skip_next</i>
-          </Link>
+          </button>
         </li>
         <li>
-          <Link to='/' className='player-link'>
+          <button className='player-link'>
             <i className='material-icons'>repeat</i>
-          </Link>
+          </button>
         </li>
       </ul>
     );
