@@ -157,7 +157,7 @@ class Player extends React.Component {
   };
 
   nextTrack = () => {
-    const uri = this.props.library[this.findCurrentIndex() + 1].uri;
+    const uri = this.props.spotify.library[this.findCurrentIndex() + 1].uri;
     this.props.playSong(this.props.auth.accessToken, this.state.deviceId, uri);
   };
 
