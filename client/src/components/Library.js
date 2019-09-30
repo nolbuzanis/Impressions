@@ -2,8 +2,13 @@ import React from 'react';
 import SongList from './SongList';
 import Player from './Player';
 import { connect } from 'react-redux';
+import { fetchDevice } from '../actions';
 
 class Library extends React.Component {
+  componentWillMount() {
+    this.props.fetchDevice();
+  }
+
   render() {
     return (
       <div>
@@ -20,5 +25,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  null
+  { fetchDevice }
 )(Library);

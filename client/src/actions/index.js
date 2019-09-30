@@ -3,7 +3,8 @@ import {
   FETCH_USER,
   FETCH_LIBRARY,
   FETCH_IMPRESSIONS,
-  PLAY_SONG
+  PLAY_SONG,
+  FETCH_DEVICE
 } from './types';
 
 export const fetchUser = () => async dispatch => {
@@ -32,10 +33,13 @@ export const fetchUserImpressions = (ids, token) => async dispatch => {
   dispatch({ type: FETCH_IMPRESSIONS, payload: res.data });
 };
 
-export const playSong = (token, uri) => async dispatch => {
+export const playSong = (token, deviceId, uri) => async dispatch => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`
+    },
+    params: {
+      device_id: { deviceId }
     }
   };
 
@@ -50,4 +54,15 @@ export const playSong = (token, uri) => async dispatch => {
   );
 
   dispatch({ type: PLAY_SONG, payload: res.data });
+};
+
+export const fetchDevice = token => async dispatch => {
+  const res = await axios.get('https://api.spotify.com/v1/me/player/devices', {
+    headers: {
+      Authorizations: `${this.props.auth.accessToken}`
+    }
+  });
+  console.log(res);
+
+  dispatch({ type: FETCH_DEVICE, payload: res._options.id });
 };

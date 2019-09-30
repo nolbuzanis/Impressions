@@ -1,6 +1,5 @@
 import React from 'react';
 import './Player.css';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -78,7 +77,6 @@ class Player extends React.Component {
       .join(',');
     const { paused, shuffle, repeat_mode, duration, position } = state;
 
-    console.log(album);
     this.setState({
       trackName,
       album,
