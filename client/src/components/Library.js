@@ -5,15 +5,20 @@ import { connect } from 'react-redux';
 import { fetchDevice } from '../actions';
 
 class Library extends React.Component {
-  componentWillMount() {
-    this.props.fetchDevice();
-  }
+  state = { activeDevice: null };
+
+  getActiveDevice = activeDevice => {
+    this.setState({ activeDevice });
+  };
 
   render() {
+    console.log(this.state.activeDevice);
     return (
       <div>
-        <SongList />
-        <Player />
+        <SongList deviceId={this.state.activeDevice} />
+        <Player
+          getActiveDevice={activeDevice => this.getActiveDevice(activeDevice)}
+        />
       </div>
     );
   }
@@ -25,5 +30,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchDevice }
+  null
 )(Library);

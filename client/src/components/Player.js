@@ -48,6 +48,7 @@ class Player extends React.Component {
       // Ready
       this.player.addListener('ready', ({ device_id }) => {
         console.log('Ready with Device ID', device_id);
+        this.props.getActiveDevice(device_id);
       });
 
       // Not Ready

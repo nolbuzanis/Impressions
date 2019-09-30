@@ -39,7 +39,7 @@ export const playSong = (token, deviceId, uri) => async dispatch => {
       Authorization: `Bearer ${token}`
     },
     params: {
-      device_id: { deviceId }
+      device_id: deviceId
     }
   };
 

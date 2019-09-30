@@ -35,7 +35,11 @@ class SongList extends Component {
             scope='row'
             className='table-rows table-data'
             onClick={() => {
-              this.props.playSong(this.props.auth.accessToken, song.uri);
+              this.props.playSong(
+                this.props.auth.accessToken,
+                this.props.deviceId,
+                song.uri
+              );
             }}
           >
             <td className='middle-align'>{i + 1}</td>
