@@ -102,9 +102,11 @@ class Player extends React.Component {
   };
 
   togglePlaySong = () => {
+    // If song is already playing/ paused
     if (this.state.trackName) {
       this.player.togglePlay();
     } else {
+      // Play song from beginning
       this.props.playSong(
         this.props.auth.accessToken,
         this.state.deviceId,
@@ -157,6 +159,20 @@ class Player extends React.Component {
   };
 
   nextTrack = () => {
+    // If current song is the last one in the library, play from beginning
+    if (!this.props.spotify.library[this.findCurrentIndex() + 1]) {
+      this.props.playSong(
+        this.props.auth.accessToken,
+        this.state.deviceId,
+        this.props.spotify.library[0].uri
+      );
+      return;
+    }
+    // If no song is currently playing
+    if (!this.state.trackName) {
+      this.togglePlaySong();
+      return;
+    }
     const uri = this.props.spotify.library[this.findCurrentIndex() + 1].uri;
     this.props.playSong(this.props.auth.accessToken, this.state.deviceId, uri);
   };
