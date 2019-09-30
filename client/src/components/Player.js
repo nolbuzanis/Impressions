@@ -158,6 +158,25 @@ class Player extends React.Component {
     );
   };
 
+  previousTrack = () => {
+    // If current song is the first one in the library, start it again
+    if (!this.props.spotify.library[this.findCurrentIndex() - 1]) {
+      this.props.playSong(
+        this.props.auth.accessToken,
+        this.state.deviceId,
+        this.props.spotify.library[0].uri
+      );
+      return;
+    }
+    // If no song is currently playing
+    if (!this.state.trackName) {
+      this.togglePlaySong();
+      return;
+    }
+    const uri = this.props.spotify.library[this.findCurrentIndex() - 1].uri;
+    this.props.playSong(this.props.auth.accessToken, this.state.deviceId, uri);
+  };
+
   nextTrack = () => {
     // If current song is the last one in the library, play from beginning
     if (!this.props.spotify.library[this.findCurrentIndex() + 1]) {
