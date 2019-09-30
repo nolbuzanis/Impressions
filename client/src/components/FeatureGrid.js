@@ -12,21 +12,25 @@ class featureGrid extends React.Component {
           name='acousticness'
           percentage={tastes.acousticness}
           pathColor={colors.acousticness}
+          description={audioDescriptions.acousticness}
         />
         <FeatureSpotlight
           name='danceability'
           percentage={tastes.danceability}
           pathColor={colors.danceability}
+          description={audioDescriptions.danceability}
         />
         <FeatureSpotlight
           name='energy'
           percentage={tastes.energy}
           pathColor={colors.energy}
+          description={audioDescriptions.energy}
         />
         <FeatureSpotlight
           name='valence'
           percentage={tastes.valence}
           pathColor={colors.valence}
+          description={audioDescriptions.valence}
         />
       </div>
     );
@@ -38,6 +42,17 @@ const colors = {
   danceability: '#FF6666',
   energy: '#FFA401',
   valence: '#3E98C7'
+};
+
+const audioDescriptions = {
+  acousticness:
+    'A confidence measure from 0-100 of how acoustic your tracks are. 100 represents a high confidence.',
+  danceability:
+    'How suitable your tracks are for dancing based on musical elements: tempo, rythmn stabiity, beat strength, and overall regularity.',
+  energy:
+    'Perceptual measure of intensity and activity of your library. Energetic tracks feel fast, loud, and noisy and encompase aduio features such as dynamic range, perceived loudness, timbre, onset rate, and general entropy',
+  valence:
+    'A description of the musical positiveness of your tracks. A high valence means more positive sounding tracks (eg. happy, cheerful, euphoric), while a low valence relates to more negative sounds (eg. sad, depressed, angry). '
 };
 
 export default featureGrid;

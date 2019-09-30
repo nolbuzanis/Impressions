@@ -22,7 +22,7 @@ class Dashboard extends Component {
     }
     if (!this.props.auth) return <div>Loading...</div>;
     return (
-      <div className='container'>
+      <div className='container' style={{ paddingTop: '120px' }}>
         <h4
           style={{
             marginTop: '0',

@@ -39,6 +39,7 @@ class featureSpotlight extends React.Component {
         <h5 style={{ color: 'rgba(0,0,0,0.8)', textAlign: 'center' }}>
           {this.props.name}
         </h5>
+        <p style={{ fontSize: '12px' }}>{this.props.description}</p>
       </div>
     );
   }
