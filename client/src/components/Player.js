@@ -10,7 +10,8 @@ class Player extends React.Component {
     album: null,
     deviceId: null,
     songId: null,
-    currentIndex: 0
+    shuffle: false,
+    repeat: false
   };
 
   componentDidMount() {
@@ -87,15 +88,13 @@ class Player extends React.Component {
       .join(',');
     const songId = currentTrack.linked_from.id || currentTrack.id;
     const { paused, shuffle, repeat_mode, duration, position } = state;
-    console.log(currentTrack);
+
     this.setState({
       songId,
       trackName,
       album,
       artistName,
       paused,
-      shuffle,
-      repeat_mode,
       duration,
       position
     });
@@ -106,6 +105,12 @@ class Player extends React.Component {
     if (this.state.trackName) {
       this.player.togglePlay();
     } else {
+      // If shuffle is selected
+      if (this.state.shuffle) {
+        this.playRandomSong();
+        return;
+      }
+
       // Play song from beginning
       this.props.playSong(
         this.props.auth.accessToken,
@@ -127,8 +132,8 @@ class Player extends React.Component {
   };
 
   renderSongFeatures = () => {
+    // No song currently playing
     if (!this.state.songId) {
-      console.log('No song is playing!');
       return null;
     }
 
@@ -177,7 +182,23 @@ class Player extends React.Component {
     this.props.playSong(this.props.auth.accessToken, this.state.deviceId, uri);
   };
 
+  playRandomSong = () => {
+    const randIndex = Math.floor(
+      Math.random() * this.props.spotify.library.length
+    );
+    this.props.playSong(
+      this.props.auth.accessToken,
+      this.state.deviceId,
+      this.props.spotify.library[randIndex].uri
+    );
+  };
+
   nextTrack = () => {
+    // If shuffle is true:
+    if (this.state.shuffle) {
+      this.playRandomSong();
+      return;
+    }
     // If current song is the last one in the library, play from beginning
     if (!this.props.spotify.library[this.findCurrentIndex() + 1]) {
       this.props.playSong(
@@ -194,6 +215,15 @@ class Player extends React.Component {
     }
     const uri = this.props.spotify.library[this.findCurrentIndex() + 1].uri;
     this.props.playSong(this.props.auth.accessToken, this.state.deviceId, uri);
+  };
+
+  toggleShuffle = () => {
+    // If false, set true
+    if (!this.state.shuffle) {
+      this.setState({ shuffle: true });
+      return;
+    }
+    this.setState({ shuffle: false });
   };
 
   render() {
@@ -215,8 +245,20 @@ class Player extends React.Component {
         </div>
         <ul className='player-controls'>
           <li>
-            <button className='player-link'>
-              <i className='material-icons'>shuffle</i>
+            <button
+              className='player-link'
+              onClick={() => {
+                this.toggleShuffle();
+              }}
+            >
+              <i
+                className='material-icons'
+                style={{
+                  color: `${this.state.shuffle ? '#0074D9' : ''}`
+                }}
+              >
+                shuffle
+              </i>
             </button>
           </li>
           <li>
