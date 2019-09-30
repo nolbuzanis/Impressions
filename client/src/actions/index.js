@@ -62,7 +62,6 @@ export const fetchDevice = token => async dispatch => {
       Authorizations: `${this.props.auth.accessToken}`
     }
   });
-  console.log(res);
 
   dispatch({ type: FETCH_DEVICE, payload: res._options.id });
 };

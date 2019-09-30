@@ -12,7 +12,6 @@ class Library extends React.Component {
   };
 
   render() {
-    console.log(this.state.activeDevice);
     return (
       <div>
         <SongList deviceId={this.state.activeDevice} />

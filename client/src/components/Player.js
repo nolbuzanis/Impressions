@@ -2,9 +2,10 @@ import React from 'react';
 import './Player.css';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { playSong } from '../actions';
 
 class Player extends React.Component {
-  state = { paused: true, album: null };
+  state = { paused: true, album: null, deviceId: null };
 
   componentDidMount() {
     if (window.loadedSpotifyPlayer) {
@@ -43,11 +44,13 @@ class Player extends React.Component {
       // Playback status updates
       this.player.on('player_state_changed', state => {
         this.onStateChanged(state);
+        console.log(state);
       });
 
       // Ready
       this.player.addListener('ready', ({ device_id }) => {
         console.log('Ready with Device ID', device_id);
+        this.setState({ deviceId: device_id });
         this.props.getActiveDevice(device_id);
       });
 
@@ -90,6 +93,18 @@ class Player extends React.Component {
     });
   };
 
+  togglePlaySong = () => {
+    if (this.state.trackName) {
+      this.player.togglePlay();
+    } else {
+      this.props.playSong(
+        this.props.auth.accessToken,
+        this.state.deviceId,
+        this.props.library[0].uri
+      );
+    }
+  };
+
   render() {
     return (
       <div className='fixed-bottom player'>
@@ -124,7 +139,7 @@ class Player extends React.Component {
           <li>
             <button
               className='player-link'
-              onClick={() => this.player.togglePlay()}
+              onClick={() => this.togglePlaySong()}
             >
               <i className='material-icons'>
                 {this.state.paused ? 'play_arrow' : 'pause'}
@@ -151,10 +166,10 @@ class Player extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { auth: state.auth };
+  return { auth: state.auth, library: state.spotify.library };
 };
 
 export default connect(
   mapStateToProps,
-  null
+  { playSong }
 )(Player);
