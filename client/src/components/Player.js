@@ -5,7 +5,13 @@ import { Redirect } from 'react-router-dom';
 import { playSong } from '../actions';
 
 class Player extends React.Component {
-  state = { paused: true, album: null, deviceId: null, songId: null };
+  state = {
+    paused: true,
+    album: null,
+    deviceId: null,
+    songId: null,
+    currentIndex: 0
+  };
 
   componentDidMount() {
     if (window.loadedSpotifyPlayer) {
@@ -107,17 +113,24 @@ class Player extends React.Component {
     }
   };
 
+  findCurrentIndex = () => {
+    for (const [
+      i,
+      song
+    ] of this.props.spotify.audioFeatures.allsongs.entries()) {
+      if (this.state.songId === song.id) {
+        return i;
+      }
+    }
+  };
+
   renderSongFeatures = () => {
     if (!this.state.songId) {
       console.log('No song is playing!');
       return null;
     }
-    var index;
-    this.props.spotify.audioFeatures.allsongs.forEach((set, i) => {
-      if (this.state.songId === set.id) {
-        index = i;
-      }
-    });
+
+    const index = this.findCurrentIndex();
 
     var { a, d, e, v } = this.props.spotify.audioFeatures.allsongs[index];
     a = Math.round(a * 100);
@@ -143,7 +156,10 @@ class Player extends React.Component {
     );
   };
 
-  previousTrack = () => {};
+  nextTrack = () => {
+    const uri = this.props.library[this.findCurrentIndex() + 1].uri;
+    this.props.playSong(this.props.auth.accessToken, this.state.deviceId, uri);
+  };
 
   render() {
     return (
