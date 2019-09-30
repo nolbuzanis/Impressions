@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { playSong } from '../actions';
 
 class Player extends React.Component {
-  state = { paused: true, album: null, deviceId: null };
+  state = { paused: true, album: null, deviceId: null, songId: null };
 
   componentDidMount() {
     if (window.loadedSpotifyPlayer) {
@@ -79,9 +79,11 @@ class Player extends React.Component {
         return artist.name;
       })
       .join(',');
+    const songId = currentTrack.linked_from.id || currentTrack.id;
     const { paused, shuffle, repeat_mode, duration, position } = state;
-
+    console.log(currentTrack);
     this.setState({
+      songId,
       trackName,
       album,
       artistName,
@@ -100,10 +102,48 @@ class Player extends React.Component {
       this.props.playSong(
         this.props.auth.accessToken,
         this.state.deviceId,
-        this.props.library[0].uri
+        this.props.spotify.library[0].uri
       );
     }
   };
+
+  renderSongFeatures = () => {
+    if (!this.state.songId) {
+      console.log('No song is playing!');
+      return null;
+    }
+    var index;
+    this.props.spotify.audioFeatures.allsongs.forEach((set, i) => {
+      if (this.state.songId === set.id) {
+        index = i;
+      }
+    });
+
+    var { a, d, e, v } = this.props.spotify.audioFeatures.allsongs[index];
+    a = Math.round(a * 100);
+    d = Math.round(d * 100);
+    e = Math.round(e * 100);
+
+    v = Math.round(v * 100);
+
+    const colors = {
+      acousticness: '#999AFF',
+      danceability: '#FF6666',
+      energy: '#FFA401',
+      valence: '#3E98C7'
+    };
+
+    return (
+      <ul>
+        <li style={{ background: colors.acousticness }}> {a}</li>
+        <li style={{ background: colors.danceability }}> {d}</li>
+        <li style={{ background: colors.energy }}>{e}</li>
+        <li style={{ background: colors.valence }}> {v}</li>
+      </ul>
+    );
+  };
+
+  previousTrack = () => {};
 
   render() {
     return (
@@ -131,7 +171,7 @@ class Player extends React.Component {
           <li>
             <button
               className='player-link'
-              onClick={() => this.player.previousTrack()}
+              onClick={() => this.previousTrack()}
             >
               <i className='material-icons'>skip_previous</i>
             </button>
@@ -147,10 +187,7 @@ class Player extends React.Component {
             </button>
           </li>
           <li>
-            <button
-              className='player-link'
-              onClick={() => this.player.nextTrack()}
-            >
+            <button className='player-link' onClick={() => this.nextTrack()}>
               <i className='material-icons'>skip_next</i>
             </button>
           </li>
@@ -160,13 +197,17 @@ class Player extends React.Component {
             </button>
           </li>
         </ul>
+        <div className='song-features'>{this.renderSongFeatures()}</div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { auth: state.auth, library: state.spotify.library };
+  return {
+    auth: state.auth,
+    spotify: state.spotify
+  };
 };
 
 export default connect(
