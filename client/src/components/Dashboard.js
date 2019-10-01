@@ -38,6 +38,16 @@ class Dashboard extends Component {
         >
           Your Audio Profile
         </h4>
+        {/* <div className='profile-info'>
+          <div
+            className='profile-photo'
+            style={{
+              background: `url(${this.props.auth.photo}) center center no-repeat`,
+              backgroundSize: 'cover'
+            }}
+          ></div>
+          <h5 className='profile-name'>{this.props.auth.name}</h5> 
+        </div>*/}
         <FeatureGrid tastes={this.props.auth.tastes} />
         <h4
           style={{
