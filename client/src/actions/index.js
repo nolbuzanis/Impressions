@@ -4,7 +4,8 @@ import {
   FETCH_LIBRARY,
   FETCH_IMPRESSIONS,
   PLAY_SONG,
-  FETCH_DEVICE
+  FETCH_DEVICE,
+  FETCH_TOP_SONGS
 } from './types';
 
 export const fetchUser = () => async dispatch => {
@@ -64,4 +65,17 @@ export const fetchDevice = token => async dispatch => {
   });
 
   dispatch({ type: FETCH_DEVICE, payload: res._options.id });
+};
+
+export const fetchTopSongs = token => async dispatch => {
+  const res = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    params: {
+      limit: 3
+    }
+  });
+
+  dispatch({ type: FETCH_TOP_SONGS, payload: res.data.items });
 };

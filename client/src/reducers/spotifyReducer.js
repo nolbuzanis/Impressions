@@ -1,7 +1,8 @@
 import {
   FETCH_LIBRARY,
   FETCH_IMPRESSIONS,
-  FETCH_DEVICE
+  FETCH_DEVICE,
+  FETCH_TOP_SONGS
 } from '../actions/types';
 
 export default (state = {}, action) => {
@@ -14,6 +15,9 @@ export default (state = {}, action) => {
     }
     case FETCH_DEVICE: {
       return { ...state, activeDevice: action.payload };
+    }
+    case FETCH_TOP_SONGS: {
+      return { ...state, users_top: action.payload };
     }
     default:
       return state;

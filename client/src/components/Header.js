@@ -8,12 +8,6 @@ class Header extends Component {
   render() {
     return (
       <div>
-        {/* <ul id='nav-mobile' className='right hide-on-med-and-down'>
-            <li>
-              <Link to='/api/logout'>Log Out</Link>
-            </li>
-          </ul> */}
-
         <ul className='nav fixed-top'>
           <li className='nav-item dropdown'>
             <div

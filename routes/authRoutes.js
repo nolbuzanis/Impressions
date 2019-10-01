@@ -10,7 +10,8 @@ module.exports = app => {
         'user-read-private',
         'user-modify-playback-state',
         'user-read-playback-state',
-        'streaming'
+        'streaming',
+        'user-top-read'
       ]
     })
   );

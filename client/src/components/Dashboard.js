@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchUserImpressions, fetchUserLibrary } from '../actions';
+import {
+  fetchUserImpressions,
+  fetchUserLibrary,
+  fetchTopSongs
+} from '../actions';
 import FeatureGrid from './FeatureGrid';
 import './Dashboard.css';
 
@@ -19,6 +23,9 @@ class Dashboard extends Component {
   render() {
     if (this.props.auth && !this.props.library) {
       this.props.fetchUserLibrary(this.props.auth.accessToken);
+    }
+    if (this.props.auth) {
+      this.props.fetchTopSongs(this.props.auth.accessToken);
     }
     if (!this.props.auth) return <div>Loading...</div>;
     return (
@@ -43,5 +50,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchUserImpressions, fetchUserLibrary }
+  { fetchUserImpressions, fetchUserLibrary, fetchTopSongs }
 )(Dashboard);
