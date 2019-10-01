@@ -1,4 +1,4 @@
-.album-artwork {
+.top-album-artwork {
   width: 20%;
   padding-bottom: 20%;
   margin-right: 3%;
@@ -11,19 +11,19 @@
   background: rgba(255, 255, 255, 0.5);
 }
 
-.song-info {
+.top-song-info {
   width: 77%;
   padding: 0;
   float: right;
 }
 
-.artist-name {
+.top-artist-name {
   font-size: 12px;
   clear: both;
   margin: 0;
 }
 
-.song-name {
+.top-song-name {
   margin: 0;
 }
 div.song-features {

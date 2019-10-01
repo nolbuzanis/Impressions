@@ -73,15 +73,15 @@ class TopSongs extends React.Component {
       return (
         <div className='col-sm' style={{ paddingTop: '10px' }}>
           <div
-            className='album-artwork'
+            className='top-album-artwork'
             style={{
               background: `url(${song.album.images[1].url}) center center no-repeat`,
               backgroundSize: 'cover'
             }}
           ></div>
-          <div className='song-info'>
-            <p className='song-name'>{song.name}</p>
-            <p className='artist-name'>{song.artists[0].name}</p>
+          <div className='top-song-info'>
+            <p className='top-song-name'>{song.name}</p>
+            <p className='top-artist-name'>{song.artists[0].name}</p>
           </div>
           {this.renderSongFeatures(song.id)}
         </div>
