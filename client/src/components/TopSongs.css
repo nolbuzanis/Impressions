@@ -1,0 +1,26 @@
+.album-artwork {
+  width: 20%;
+  padding-bottom: 20%;
+  margin-right: 3%;
+  float: left;
+}
+.col-sm div {
+  display: inline-block;
+}
+
+.col-sm:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.song-info {
+  width: 77%;
+  padding: 0;
+}
+
+.artist-name {
+  font-size: 12px;
+}
+
+.song-name {
+  margin: 0;
+}

@@ -8,6 +8,7 @@ import {
 } from '../actions';
 import FeatureGrid from './FeatureGrid';
 import './Dashboard.css';
+import TopSongs from './TopSongs';
 
 class Dashboard extends Component {
   componentDidUpdate() {
@@ -30,15 +31,23 @@ class Dashboard extends Component {
     if (!this.props.auth) return <div>Loading...</div>;
     return (
       <div className='container' style={{ paddingTop: '120px' }}>
-        <h4>Your Audio Profile</h4>
+        <h4
+          style={{
+            paddingBottom: '20px'
+          }}
+        >
+          Your Audio Profile
+        </h4>
         <FeatureGrid tastes={this.props.auth.tastes} />
         <h4
           style={{
-            paddingTop: '10px'
+            paddingTop: '10px',
+            paddingBottom: '20px'
           }}
         >
-          Other Info
+          Top Songs
         </h4>
+        <TopSongs />
       </div>
     );
   }
