@@ -24,11 +24,10 @@ class Dashboard extends Component {
   render() {
     if (this.props.auth && !this.props.library) {
       this.props.fetchUserLibrary(this.props.auth.accessToken);
-    }
-    if (this.props.auth) {
       this.props.fetchTopSongs(this.props.auth.accessToken);
     }
-    if (!this.props.auth) return <div>Loading...</div>;
+
+    if (!this.props.auth && !this.props.library) return <div>Loading...</div>;
     return (
       <div className='container' style={{ paddingTop: '120px' }}>
         <h4

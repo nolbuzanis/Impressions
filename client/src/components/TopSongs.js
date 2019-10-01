@@ -43,27 +43,25 @@ class TopSongs extends React.Component {
     };
 
     return (
-      <div className='song-features'>
-        <ul>
-          <li
-            className='feature'
-            style={{ background: `${colors.acousticness}` }}
-          >
-            {a}
-          </li>
-          <li
-            className='feature'
-            style={{ background: `${colors.danceability}` }}
-          >
-            {d}
-          </li>
-          <li className='feature' style={{ background: `${colors.energy}` }}>
-            {e}
-          </li>
-          <li className='feature' style={{ background: `${colors.valence}` }}>
-            {v}
-          </li>
-        </ul>
+      <div className='top-song-features'>
+        <li
+          className='feature'
+          style={{ background: `${colors.acousticness}` }}
+        >
+          {a}
+        </li>
+        <li
+          className='feature'
+          style={{ background: `${colors.danceability}` }}
+        >
+          {d}
+        </li>
+        <li className='feature' style={{ background: `${colors.energy}` }}>
+          {e}
+        </li>
+        <li className='feature' style={{ background: `${colors.valence}` }}>
+          {v}
+        </li>
       </div>
     );
   };
@@ -71,7 +69,7 @@ class TopSongs extends React.Component {
   renderSongCard = () => {
     return this.props.top.map(song => {
       return (
-        <div className='col-sm' style={{ paddingTop: '10px' }}>
+        <div className='col-sm song-card'>
           <div
             className='top-album-artwork'
             style={{
@@ -82,8 +80,8 @@ class TopSongs extends React.Component {
           <div className='top-song-info'>
             <p className='top-song-name'>{song.name}</p>
             <p className='top-artist-name'>{song.artists[0].name}</p>
+            {this.renderSongFeatures(song.id)}
           </div>
-          {this.renderSongFeatures(song.id)}
         </div>
       );
     });
