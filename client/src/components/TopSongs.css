@@ -2,7 +2,6 @@
   width: 20%;
   padding-bottom: 20%;
   margin-right: 3%;
-  float: left;
 }
 .col-sm div {
   display: inline-block;
@@ -15,12 +14,36 @@
 .song-info {
   width: 77%;
   padding: 0;
+  float: right;
 }
 
 .artist-name {
   font-size: 12px;
+  clear: both;
+  margin: 0;
 }
 
 .song-name {
   margin: 0;
+}
+div.song-features {
+  box-sizing: border-box;
+  display: block !important;
+  width: 100%;
+  position: relative;
+  clear: both;
+  text-align: center;
+}
+
+.song-features ul {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.feature {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0 20px;
+  height: 30px;
+  border-radius: 15px;
+  margin: 0 15px;
 }

@@ -1,6 +1,5 @@
 const axios = require('axios');
 const mongoose = require('mongoose');
-const Song = mongoose.model('songs');
 const User = mongoose.model('users');
 
 module.exports = app => {
@@ -38,7 +37,7 @@ module.exports = app => {
           });
         });
 
-        if (promise.data.items.length < 20 || offset > 20) {
+        if (promise.data.items.length < 20 || offset === 200) {
           //console.log(promise.data.items[0]);
           // Reached last set of songs from library, exit loop
           break;
@@ -53,72 +52,81 @@ module.exports = app => {
   app.get('/api/audio_features', async (req, res) => {
     // Capture access token and convert array of IDs into a comma-separated list
     const token = req.query.token;
-    const ids = req.query.ids.join(',');
 
     const numberOfSongs = req.query.ids.length;
+    const ids = req.query.ids;
+    var total_a = 0.0; //acousticness
+    var total_d = 0.0; //danceability
+    var total_e = 0.0; //energy
+    var total_v = 0.0; //valence
+    songFeatures = [];
+    console.log('Total # of songs:', numberOfSongs);
+    console.log(Math.ceil(numberOfSongs / 100));
 
-    try {
-      const promise = await axios.get(
-        'https://api.spotify.com/v1/audio-features/',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          },
-          params: {
-            ids
+    for (let i = 0; i < Math.ceil(numberOfSongs / 100); i++) {
+      const partialIds = ids.slice(0 + 100 * i, 100 + 100 * i).join(',');
+
+      try {
+        const promise = await axios.get(
+          'https://api.spotify.com/v1/audio-features/',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            },
+            params: {
+              ids: partialIds
+            }
           }
-        }
-      );
+        );
+        console.log(promise.data);
 
-      var total_a = 0.0; //acousticness
-      var total_d = 0.0; //danceability
-      var total_e = 0.0; //energy
-      var total_v = 0.0; //valence
-      songFeatures = [];
+        promise.data.audio_features.forEach(object => {
+          songFeatures.push({
+            id: object.id,
+            a: object.acousticness,
+            d: object.danceability,
+            e: object.energy,
+            v: object.valence
+          });
 
-      promise.data.audio_features.forEach(object => {
-        songFeatures.push({
-          id: object.id,
-          a: object.acousticness,
-          d: object.danceability,
-          e: object.energy,
-          v: object.valence
+          // Add to ongoing sum
+          total_a += object.acousticness;
+          total_d += object.danceability;
+          total_e += object.energy;
+          total_v += object.valence;
         });
 
-        // Add to ongoing sum
-        total_a += object.acousticness;
-        total_d += object.danceability;
-        total_e += object.energy;
-        total_v += object.valence;
-      });
-
-      // console.log('Total acousticness:', total_a);
-      // console.log('Total danceability:', total_d);
-      // console.log('Total energy:', total_e);
-      // console.log('Total valence:', total_v);
-
-      // Divide by the total songs to find the mean value
-      var impressions = {
-        acousticness: total_a / numberOfSongs,
-        danceability: total_d / numberOfSongs,
-        energy: total_e / numberOfSongs,
-        valence: total_v / numberOfSongs
-      };
-
-      // Store those values for each user
-      const isUser = await User.findOne({ accessToken: token });
-      if (!isUser) {
-        console.log('Error: No user matches this request!');
-      } else {
-        //console.log(isUser);
-        isUser.tastes = impressions;
-        isUser.save();
+        // console.log('Total acousticness:', total_a);
+        // console.log('Total danceability:', total_d);
+        // console.log('Total energy:', total_e);
+        // console.log('Total valence:', total_v);
+      } catch (error) {
+        console.log(error);
       }
 
-      // Send values back to front-end using res object
-      res.send({ impressions, allsongs: songFeatures });
-    } catch (error) {
-      console.log(error);
+      if (i * 100 > numberOfSongs) {
+        break;
+      }
     }
+    // Divide by the total songs to find the mean value
+    var impressions = {
+      acousticness: total_a / numberOfSongs,
+      danceability: total_d / numberOfSongs,
+      energy: total_e / numberOfSongs,
+      valence: total_v / numberOfSongs
+    };
+
+    // Store those values for each user
+    const isUser = await User.findOne({ accessToken: token });
+    if (!isUser) {
+      console.log('Error: No user matches this request!');
+    } else {
+      //console.log(isUser);
+      isUser.tastes = impressions;
+      isUser.save();
+    }
+
+    // Send values back to front-end using res object
+    res.send({ impressions, allsongs: songFeatures });
   });
 };
