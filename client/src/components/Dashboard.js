@@ -24,6 +24,8 @@ class Dashboard extends Component {
   render() {
     if (this.props.auth && !this.props.library) {
       this.props.fetchUserLibrary(this.props.auth.accessToken);
+    }
+    if (this.props.auth && !this.props.topSongs) {
       this.props.fetchTopSongs(this.props.auth.accessToken);
     }
 
@@ -63,7 +65,11 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => {
-  return { auth: state.auth, library: state.spotify.library };
+  return {
+    auth: state.auth,
+    library: state.spotify.library,
+    topSongs: state.spotify.topSongs
+  };
 };
 
 export default connect(

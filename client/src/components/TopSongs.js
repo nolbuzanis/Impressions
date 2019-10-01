@@ -24,15 +24,16 @@ class TopSongs extends React.Component {
 
     if (index) {
       var { a, d, e, v } = this.props.spotify.audioFeatures.allsongs[index];
+      console.log('a: ', a, 'd: ', d);
       a = Math.round(a * 100);
       d = Math.round(d * 100);
       e = Math.round(e * 100);
       v = Math.round(v * 100);
     } else {
-      const a = '-';
-      const d = '-';
-      const v = '-';
-      const e = '-';
+      a = '';
+      d = '';
+      v = '';
+      e = '';
     }
 
     const colors = {
