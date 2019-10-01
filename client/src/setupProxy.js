@@ -1,6 +1,12 @@
 const proxy = require('http-proxy-middleware');
-import '../../config/keys';
 
 module.exports = app => {
-  app.use(proxy(['/api', '/auth/spotify'], { target: proxyTo }));
+  if (process.env.NODE_ENV === 'production') {
+    return null;
+  }
+  app.use(
+    proxy(['/api', '/auth/spotify'], {
+      target: 'http://localhost:8000'
+    })
+  );
 };
