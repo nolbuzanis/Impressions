@@ -2,6 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './TopSongs.css';
 
+//Tippy.js
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
+
 class TopSongs extends React.Component {
   findCurrentIndex = songId => {
     for (const [
@@ -43,24 +47,56 @@ class TopSongs extends React.Component {
       valence: '#3E98C7'
     };
 
+    //Tooltips
+    tippy('#acousticness', {
+      content: 'acousticness'
+    });
+    tippy('#danceability', {
+      content: 'danceability'
+    });
+    tippy('#energy', {
+      content: 'energy'
+    });
+    tippy('#valence', {
+      content: 'valence'
+    });
+
     return (
       <div className='top-song-features'>
         <li
+          id='acousticness'
           className='feature'
-          style={{ background: `${colors.acousticness}` }}
+          style={{
+            background: `${colors.acousticness}`
+          }}
         >
           {a}
         </li>
         <li
+          id='danceability'
           className='feature'
-          style={{ background: `${colors.danceability}` }}
+          style={{
+            background: `${colors.danceability}`
+          }}
         >
           {d}
         </li>
-        <li className='feature' style={{ background: `${colors.energy}` }}>
+        <li
+          id='energy'
+          className='feature'
+          style={{
+            background: `${colors.energy}`
+          }}
+        >
           {e}
         </li>
-        <li className='feature' style={{ background: `${colors.valence}` }}>
+        <li
+          id='valence'
+          className='feature'
+          style={{
+            background: `${colors.valence}`
+          }}
+        >
           {v}
         </li>
       </div>

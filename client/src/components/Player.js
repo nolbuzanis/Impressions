@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { playSong } from '../actions';
 
+//Tippy.js
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
+
 class Player extends React.Component {
   state = {
     paused: true,
@@ -151,12 +155,37 @@ class Player extends React.Component {
       valence: '#3E98C7'
     };
 
+    //Tooltips
+    tippy('#acousticness', {
+      content: 'acousticness'
+    });
+    tippy('#danceability', {
+      content: 'danceability'
+    });
+    tippy('#energy', {
+      content: 'energy'
+    });
+    tippy('#valence', {
+      content: 'valence'
+    });
+
     return (
       <ul>
-        <li style={{ background: colors.acousticness }}> {a}</li>
-        <li style={{ background: colors.danceability }}> {d}</li>
-        <li style={{ background: colors.energy }}>{e}</li>
-        <li style={{ background: colors.valence }}> {v}</li>
+        <li id='acousticness' style={{ background: colors.acousticness }}>
+          {' '}
+          {a}
+        </li>
+        <li id='danceability' style={{ background: colors.danceability }}>
+          {' '}
+          {d}
+        </li>
+        <li id='energy' style={{ background: colors.energy }}>
+          {e}
+        </li>
+        <li id='valence' style={{ background: colors.valence }}>
+          {' '}
+          {v}
+        </li>
       </ul>
     );
   };
