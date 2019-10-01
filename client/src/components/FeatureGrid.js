@@ -4,8 +4,10 @@ import FeatureSpotlight from './FeatureSpotlight';
 class featureGrid extends React.Component {
   render() {
     const { tastes } = this.props;
+    if (!tastes) {
+      return null;
+    }
 
-    console.log(tastes);
     return (
       <div className='row'>
         <FeatureSpotlight
@@ -50,7 +52,7 @@ const audioDescriptions = {
   danceability:
     'How suitable your tracks are for dancing based on musical elements: tempo, rythmn stabiity, beat strength, and overall regularity.',
   energy:
-    'Perceptual measure of intensity and activity of your library. Energetic tracks feel fast, loud, and noisy and encompase aduio features such as dynamic range, perceived loudness, timbre, onset rate, and general entropy',
+    'Perceptual measure of intensity and activity of your library. Energetic tracks feel fast, loud, and noisy and encompase audio features such as dynamic range, perceived loudness, timbre, onset rate, and general entropy',
   valence:
     'A description of the musical positiveness of your tracks. A high valence means more positive sounding tracks (eg. happy, cheerful, euphoric), while a low valence relates to more negative sounds (eg. sad, depressed, angry). '
 };

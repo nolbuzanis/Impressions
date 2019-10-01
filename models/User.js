@@ -10,7 +10,9 @@ const userSchema = new Schema({
     danceability: Number,
     energy: Number,
     valence: Number
-  }
+  },
+  email: String,
+  photo: String
 });
 
 mongoose.model('users', userSchema);

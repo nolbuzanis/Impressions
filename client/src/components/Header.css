@@ -12,37 +12,39 @@
 .nav-wrapper {
   background: rgba(255, 255, 255, 0.8);
 }
+#dropdownMenuButton {
+  margin-top: 10px;
+}
+
+.profile-image {
+  background: black;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
 
 .nav-link {
   color: rgba(0, 0, 0, 0.6);
   border-radius: 5px;
   transition: all ease 0.2s;
+  box-sizing: border-box;
+  margin-top: 20px;
 }
 .nav-link:hover {
   background: rgba(198, 185, 115, 0.8);
   color: black;
+  cursor: pointer;
+}
+
+.nav-item {
+  padding: 0;
+  padding-right: 5px;
+  margin: 0;
 }
 
 nav ul {
   padding-top: 5px;
   padding-bottom: 5px;
-}
-
-.nav-link {
-  box-sizing: border-box;
-  margin-top: 15px;
-}
-
-.nav-link.profile-button {
-  margin-top: 10px;
-}
-
-.profile-icon svg {
-  width: 30px;
-  position: relative;
-
-  margin-left: -15px;
-  left: 50%;
 }
 
 .active {
