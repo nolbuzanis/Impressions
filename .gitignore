@@ -123,4 +123,4 @@ Temporary Items
 # End of https://www.gitignore.io/api/osx,node
 
 #Spotify
-keys.js
+dev.js
