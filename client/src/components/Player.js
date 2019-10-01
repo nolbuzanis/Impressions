@@ -51,7 +51,6 @@ class Player extends React.Component {
       // Playback status updates
       this.player.on('player_state_changed', state => {
         this.onStateChanged(state);
-        console.log(state);
       });
 
       // Ready
@@ -68,7 +67,6 @@ class Player extends React.Component {
       });
       this.player.connect();
     }
-    console.log(this.player);
   };
 
   //Handle players state to update our own component level state
@@ -87,7 +85,7 @@ class Player extends React.Component {
       })
       .join(',');
     const songId = currentTrack.linked_from.id || currentTrack.id;
-    const { paused, shuffle, repeat_mode, duration, position } = state;
+    const { paused, duration, position } = state;
 
     this.setState({
       songId,

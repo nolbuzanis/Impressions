@@ -59,8 +59,6 @@ module.exports = app => {
     var total_e = 0.0; //energy
     var total_v = 0.0; //valence
     songFeatures = [];
-    console.log('Total # of songs:', numberOfSongs);
-    console.log(Math.ceil(numberOfSongs / 100));
 
     for (let i = 0; i < Math.ceil(numberOfSongs / 100); i++) {
       const partialIds = ids.slice(0 + 100 * i, 100 + 100 * i).join(',');

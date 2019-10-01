@@ -8,7 +8,6 @@ class featureGrid extends React.Component {
     if (this.props.auth.tastes) {
       tastes = this.props.auth.tastes;
     } else if (!this.props.spotify.audioFeatures) {
-      console.log('Does not exist!');
       return null;
     } else {
       tastes = this.props.spotify.audioFeatures.impressions;

@@ -2,7 +2,6 @@ import React from 'react';
 import SongList from './SongList';
 import Player from './Player';
 import { connect } from 'react-redux';
-import { fetchDevice } from '../actions';
 
 class Library extends React.Component {
   state = { activeDevice: null };

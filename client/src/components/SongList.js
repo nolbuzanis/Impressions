@@ -32,7 +32,6 @@ class SongList extends Component {
         return (
           <tr
             key={song.id}
-            scope='row'
             className='table-rows table-data'
             onClick={() => {
               this.props.playSong(

@@ -24,7 +24,7 @@ class TopSongs extends React.Component {
 
     if (index) {
       var { a, d, e, v } = this.props.spotify.audioFeatures.allsongs[index];
-      console.log('a: ', a, 'd: ', d);
+
       a = Math.round(a * 100);
       d = Math.round(d * 100);
       e = Math.round(e * 100);
@@ -70,7 +70,7 @@ class TopSongs extends React.Component {
   renderSongCard = () => {
     return this.props.top.map(song => {
       return (
-        <div className='col-sm song-card'>
+        <div className='col-sm song-card' key={song.id}>
           <div
             className='top-album-artwork'
             style={{
