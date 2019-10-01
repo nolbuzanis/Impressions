@@ -1,11 +1,17 @@
 import React from 'react';
 import FeatureSpotlight from './FeatureSpotlight';
+import { connect } from 'react-redux';
 
 class featureGrid extends React.Component {
   render() {
-    const { tastes } = this.props;
-    if (!tastes) {
+    var tastes;
+    if (this.props.auth.tastes) {
+      tastes = this.props.auth.tastes;
+    } else if (!this.props.spotify.audioFeatures) {
+      console.log('Does not exist!');
       return null;
+    } else {
+      tastes = this.props.spotify.audioFeatures.impressions;
     }
 
     return (
@@ -57,4 +63,11 @@ const audioDescriptions = {
     'A description of the musical positiveness of your tracks. A high valence means more positive sounding tracks (eg. happy, cheerful, euphoric), while a low valence relates to more negative sounds (eg. sad, depressed, angry). '
 };
 
-export default featureGrid;
+const mapStateToProps = state => {
+  return { auth: state.auth, spotify: state.spotify };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(featureGrid);

@@ -38,7 +38,6 @@ module.exports = app => {
         });
 
         if (promise.data.items.length < 20 || offset === 200) {
-          //console.log(promise.data.items[0]);
           // Reached last set of songs from library, exit loop
           break;
         }
@@ -78,7 +77,6 @@ module.exports = app => {
             }
           }
         );
-        console.log(promise.data);
 
         promise.data.audio_features.forEach(object => {
           songFeatures.push({

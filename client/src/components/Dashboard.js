@@ -49,7 +49,7 @@ class Dashboard extends Component {
           ></div>
           <h5 className='profile-name'>{this.props.auth.name}</h5> 
         </div>*/}
-        <FeatureGrid tastes={this.props.auth.tastes} />
+        <FeatureGrid />
         <h4
           style={{
             paddingTop: '10px',
