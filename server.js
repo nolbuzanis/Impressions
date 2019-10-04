@@ -11,6 +11,7 @@ require('./models/Song');
 require('./services/passport'); //Passport config
 
 const app = express();
+console.log(process.env.NODE_ENV);
 
 // tell express to make use of cookies
 app.use(
@@ -22,9 +23,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./routes/authRoutes')(app); // Spotify OAuth
-require('./routes/spotifyRoutes')(app); //routes for fetching data from Spotify Web API
-
 if (process.env.NODE_ENV === 'production') {
   // Serve any production assets like our main.css or main.js
   app.use(express.static('client/build'));
@@ -35,8 +33,11 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+require('./routes/authRoutes')(app); // Spotify OAuth
+require('./routes/spotifyRoutes')(app); //routes for fetching data from Spotify Web API
+
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, (req, res) => {
-  console.log('App no listening on port: ', PORT);
+  console.log('App now listening on port: ', PORT);
 });

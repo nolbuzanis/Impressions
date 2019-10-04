@@ -4,3 +4,4 @@ export const FETCH_IMPRESSIONS = 'fetch_impressions';
 export const PLAY_SONG = 'play_song';
 export const FETCH_DEVICE = 'fetch_device';
 export const FETCH_TOP_SONGS = 'fetch_top_songs';
+export const PAUSE_SONG = 'pause_song';

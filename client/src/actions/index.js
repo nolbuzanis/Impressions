@@ -5,7 +5,8 @@ import {
   FETCH_IMPRESSIONS,
   PLAY_SONG,
   FETCH_DEVICE,
-  FETCH_TOP_SONGS
+  FETCH_TOP_SONGS,
+  PAUSE_SONG
 } from './types';
 
 export const fetchUser = () => async dispatch => {
@@ -78,4 +79,18 @@ export const fetchTopSongs = token => async dispatch => {
   });
 
   dispatch({ type: FETCH_TOP_SONGS, payload: res.data.items });
+};
+
+export const pauseSong = token => async dispatch => {
+  const res = await axios.put(
+    'https://api.spotify.com/v1/me/player/pause',
+    null,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+
+  dispatch({ type: PAUSE_SONG, payload: res.data });
 };

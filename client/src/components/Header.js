@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 import history from './history';
 import { connect } from 'react-redux';
+import { pauseSong } from '../actions';
 
 class Header extends Component {
   render() {
@@ -38,6 +39,10 @@ class Header extends Component {
               className={`nav-link ${
                 history.location.pathname === '/' ? 'active' : ''
               }`}
+              onClick={() => {
+                console.log(this.props.auth.accessToken);
+                this.props.pauseSong(this.props.auth.accessToken);
+              }}
             >
               Profile
             </Link>
@@ -64,5 +69,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  null
+  { pauseSong }
 )(Header);

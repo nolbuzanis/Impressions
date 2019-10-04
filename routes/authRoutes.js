@@ -22,6 +22,7 @@ module.exports = app => {
       failureRedirect: '/'
     }),
     (req, res) => {
+      console.log('redirecting to...');
       res.redirect('/');
     }
   );
