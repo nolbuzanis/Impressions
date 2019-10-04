@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <div>
         <Router history={history}>
-          <Route path='' component={this.props.auth ? Header : ''} />
+          <Route path='/' component={this.props.auth ? Header : ''} />
           <Route
             path='/'
             component={!this.props.auth ? Landing : Dashboard}
