@@ -23,6 +23,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+require('./routes/authRoutes')(app); // Spotify OAuth
+require('./routes/spotifyRoutes')(app); //routes for fetching data from Spotify Web API
+
 if (process.env.NODE_ENV === 'production') {
   // Serve any production assets like our main.css or main.js
   app.use(express.static('client/build'));
@@ -32,9 +35,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
-
-require('./routes/authRoutes')(app); // Spotify OAuth
-require('./routes/spotifyRoutes')(app); //routes for fetching data from Spotify Web API
 
 const PORT = process.env.PORT || 8000;
 
