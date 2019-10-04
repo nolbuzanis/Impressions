@@ -85,3 +85,38 @@ button:focus {
   border-radius: 15px;
   margin-right: 10px;
 }
+
+/* On screens that are 800px or less, aka Tablets */
+@media screen and (max-width: 800px) {
+}
+
+/* On screens that are 500px or less, phones */
+@media screen and (max-width: 500px) {
+  .currently-playing {
+    position: absolute;
+    background: white;
+    top: -60px;
+    width: 100%;
+    box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.5);
+  }
+  .song-features {
+    position: absolute;
+    top: -40px;
+    right: 5px;
+  }
+  .song-features li {
+    width: 24px;
+    font-size: 12px;
+    height: 24px;
+    border-radius: 12px;
+    margin-right: 5px;
+  }
+  .song-info p {
+    max-width: 190px;
+    text-overflow: ellipsis;
+
+    /* Required for text-overflow to do anything */
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

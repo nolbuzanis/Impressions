@@ -256,7 +256,10 @@ class Player extends React.Component {
   render() {
     return (
       <div className='fixed-bottom player'>
-        <div className='currently-playing'>
+        <div
+          className='currently-playing'
+          style={{ display: `${this.state.trackName ? 'inherit' : 'none'}` }}
+        >
           <div
             className='album-artwork'
             style={{
