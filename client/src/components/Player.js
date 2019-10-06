@@ -19,7 +19,7 @@ class Player extends React.Component {
   };
 
   componentDidMount() {
-    if (window.loadedSpotifyPlayer) {
+    if (window.loadedSpotifyPlayer && !this.player) {
       this.initializePlayer();
     }
 

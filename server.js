@@ -16,7 +16,7 @@ console.log(process.env.NODE_ENV);
 // tell express to make use of cookies
 app.use(
   cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000, //Last for 30 days (in microseconds)
+    maxAge: 59 * 60 * 1000, //Last for <1 hr (in microseconds)
     keys: [keys.cookieKey]
   })
 );

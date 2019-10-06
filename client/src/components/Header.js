@@ -40,7 +40,6 @@ class Header extends Component {
                 history.location.pathname === '/' ? 'active' : ''
               }`}
               onClick={() => {
-                console.log(this.props.auth.accessToken);
                 this.props.pauseSong(this.props.auth.accessToken);
               }}
             >

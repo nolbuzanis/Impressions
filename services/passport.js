@@ -24,7 +24,6 @@ passport.use(
       proxy: true
     },
     async (accessToken, refreshToken, expires, profile, done) => {
-      console.log(expires);
       const existingUser = await User.findOne({ spotifyId: profile.id });
 
       if (!existingUser) {
